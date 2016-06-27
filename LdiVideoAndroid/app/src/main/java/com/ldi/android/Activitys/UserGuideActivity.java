@@ -26,7 +26,7 @@ public class UserGuideActivity extends BaseActivity {
     void click(View v){
         switch (v.getId()){
             case R.id.userGuideRegisterBtn:        //注册
-
+                RegisterActivity_.intent(this).start();
                 break;
             case R.id.userGuideLoginBtn:     //登录
                 LoginActivity_.intent(this).start();

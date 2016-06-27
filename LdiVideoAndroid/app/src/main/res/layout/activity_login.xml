@@ -1,31 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:clipToPadding="true"
     tools:context="com.ldi.android.Activitys.LoginActivity">
-
+    <!--导航条-->
+    <include layout="@layout/navigation_bar_back" />
+    <!--内容-->
     <EditText
-        android:id="@+id/loginMobileET"
+        android:id="@+id/loginAccountET"
+        style="@style/text_darkgray_14"
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:drawableLeft="@mipmap/account_normal"
+        android:drawablePadding="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="60dp"
+        android:inputType="phone"
+        android:maxLength="11"
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_edittext_height"
-        android:hint="输入手机号"
-        android:inputType="phone"/>
-
-    <EditText
-        android:id="@+id/loginCheckCodeET"
-        android:layout_width="match_parent"
+        android:hint="@string/input_mobile_hint"
+        android:textColorHint="@color/gray_btn_bg_color"
+        android:background="@drawable/input_edittext_bg" />
+    <ImageButton
+        android:id="@+id/loginAccountClearIB"
+        android:layout_width="@dimen/login_edittext_height"
         android:layout_height="@dimen/login_edittext_height"
+        android:layout_alignTop="@+id/loginAccountET"
+        android:layout_alignRight="@+id/loginAccountET"
         android:visibility="gone"
-        android:inputType="numberSigned"/>
+        android:background="@null"
+        android:contentDescription="@string/app_name"
+        android:src="@mipmap/input_clear"/>
+    <EditText
+        android:id="@+id/loginPasswordET"
+        style="@style/text_darkgray_14"
+        android:layout_below="@+id/loginAccountET"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:drawableLeft="@mipmap/password_normal"
+        android:drawablePadding="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="30dp"
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_edittext_height"
+        android:hint="@string/input_password_hint"
+        android:textColorHint="@color/gray_btn_bg_color"
+        android:background="@drawable/input_edittext_bg"/>
+    <ImageButton
+        android:id="@+id/loginPasswordVisibleIB"
+        android:layout_width="@dimen/login_edittext_height"
+        android:layout_height="@dimen/login_edittext_height"
+        android:layout_alignTop="@+id/loginPasswordET"
+        android:layout_alignRight="@+id/loginPasswordET"
+        android:background="@null"
+        android:contentDescription="@string/app_name"
+        android:src="@mipmap/password_invisible"/>
 
     <Button
-        android:id="@+id/loginSendCheckCodeBtn"
+        android:id="@+id/loginBtn"
+        style="@style/text_white_16"
+        android:layout_below="@+id/loginPasswordET"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:layout_width="match_parent"
+        android:layout_height="@dimen/login_button_height"
+        android:text="@string/login"
+        android:enabled="false"
+        android:background="@drawable/red_btn_bg_selector"
+        />
+    <TextView
+        android:id="@+id/loginRegisterTv"
+        style="@style/text_darkgray_14"
+        android:layout_below="@+id/loginBtn"
+        android:layout_alignLeft="@+id/loginBtn"
+        android:clickable="true"
+        android:layout_marginTop="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="发送验证码"/>
+        android:text="@string/now_register"/>
+    <TextView
+        android:id="@+id/loginForgetPasswordTv"
+        style="@style/text_darkgray_14"
+        android:layout_below="@+id/loginBtn"
+        android:layout_alignRight="@+id/loginBtn"
+        android:clickable="true"
+        android:layout_marginTop="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/forget_password"/>
 
-</LinearLayout>
+</RelativeLayout>

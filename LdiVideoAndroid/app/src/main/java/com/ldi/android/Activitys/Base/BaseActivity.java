@@ -38,7 +38,15 @@ public class BaseActivity extends AppCompatActivity {
         tintManager = new SystemBarTintManager(this);
         setSystemTintColorBar(R.color.colorPrimary);
     }
-
+    /**
+     * 设置标题
+     * */
+    protected void setTitle(int resID,int strID){
+        TextView titleTv = (TextView)findViewById(resID);
+        if (titleTv != null) {
+            titleTv.setText(strID);
+        }
+    }
     /***
      * showProcessHUD
      * 			显示进度指示

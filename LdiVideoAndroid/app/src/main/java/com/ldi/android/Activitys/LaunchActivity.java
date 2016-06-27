@@ -7,6 +7,8 @@ import android.view.Window;
 import android.widget.ImageView;
 
 import com.ldi.android.Activitys.Base.BaseActivity;
+import com.ldi.android.App_;
+import com.ldi.android.Beans.User;
 import com.ldi.android.R;
 
 import org.androidannotations.annotations.AfterViews;
@@ -55,7 +57,13 @@ public class LaunchActivity extends BaseActivity implements  Animator.AnimatorLi
     }
     @UiThread
     void startEnter(){
-        //注册登录页
-        UserGuideActivity_.intent(this).start();
+        if (App_.getInstance().mUser == null) { //未登录
+            //注册登录页
+            UserGuideActivity_.intent(this).start();
+        }else{                                  //已登录,调到主界面
+
+        }
+
+        finish();
     }
 }
