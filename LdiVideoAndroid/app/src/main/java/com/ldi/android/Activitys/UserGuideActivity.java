@@ -16,9 +16,6 @@ import org.androidannotations.rest.spring.annotations.RestService;
 @EActivity(R.layout.activity_user_guide)
 public class UserGuideActivity extends BaseActivity {
 
-    @RestService
-    MyRestClient restClient;
-
     @AfterViews
     void afterViews(){
         setSystemTintColorBar(R.color.launch_bg_color);
@@ -28,11 +25,11 @@ public class UserGuideActivity extends BaseActivity {
     @Click({R.id.userGuideLoginBtn,R.id.userGuideRegisterBtn})
     void click(View v){
         switch (v.getId()){
-            case R.id.userGuideLoginBtn:        //注册
+            case R.id.userGuideRegisterBtn:        //注册
 
                 break;
-            case R.id.userGuideRegisterBtn:     //登录
-
+            case R.id.userGuideLoginBtn:     //登录
+                LoginActivity_.intent(this).start();
                 break;
             default:
                 break;

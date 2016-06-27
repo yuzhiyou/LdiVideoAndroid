@@ -15,7 +15,11 @@ import org.springframework.util.MultiValueMap;
  */
 @Rest(rootUrl = Constants.kWebApiUrl, converters = {FormHttpMessageConverter.class,StringHttpMessageConverter.class})
 public interface MyRestClient extends RestClientHeaders {
-
+    /**
+     发送验证码
+     */
+    @Post("/v1/user/sendSms")
+    String getCheckCode(@Body MultiValueMap<String, Object> data);
     /**
      用户注册
     */
