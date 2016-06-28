@@ -17,6 +17,8 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.WindowFeature;
 
+import tcking.github.com.giraffeplayer.GiraffePlayerActivity;
+
 @EActivity(R.layout.activity_launch)
 public class LaunchActivity extends BaseActivity implements  Animator.AnimatorListener{
     //动画时间
@@ -61,8 +63,10 @@ public class LaunchActivity extends BaseActivity implements  Animator.AnimatorLi
             //注册登录页
             UserGuideActivity_.intent(this).start();
         }else{                                  //已登录,调到主界面
-
+            //播放视频
+            GiraffePlayerActivity.configPlayer(this).play("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
         }
+
 
         finish();
     }

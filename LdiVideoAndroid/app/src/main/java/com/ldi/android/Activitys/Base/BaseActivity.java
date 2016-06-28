@@ -33,7 +33,6 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         // create our manager instance after the content view is set
         tintManager = new SystemBarTintManager(this);
         setSystemTintColorBar(R.color.colorPrimary);

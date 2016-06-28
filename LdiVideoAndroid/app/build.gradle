@@ -31,10 +31,9 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
-
     //AA
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
@@ -47,4 +46,7 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.0.0'
     //网络图片加载
     compile 'com.squareup.picasso:picasso:2.5.2'
+    //百分比布局
+    compile 'com.zhy:percent-support-extends:1.1.1'
+    compile project(':giraffeplayer')
 }
