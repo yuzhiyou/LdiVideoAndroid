@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.ldi.android.Activitys.Base.BaseActivity;
 import com.ldi.android.App_;
 import com.ldi.android.Beans.User;
@@ -28,8 +27,6 @@ import org.androidannotations.annotations.TextChange;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.rest.spring.annotations.RestService;
-import org.androidannotations.rest.spring.api.MediaType;
-import org.json.JSONObject;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends BaseActivity {
@@ -126,10 +123,10 @@ public class LoginActivity extends BaseActivity {
                 break;
             }
             case R.id.loginForgetPasswordTv:  //忘记密码
-
+                ForgetPassActivity_.intent(this).start();
                 break;
             case R.id.loginRegisterTv:  //立即注册
-
+                RegisterActivity_.intent(this).start();
                 break;
         }
     }

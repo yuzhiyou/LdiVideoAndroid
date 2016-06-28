@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.ldi.android.Activitys.Base.BaseActivity;
@@ -17,7 +15,6 @@ import com.ldi.android.Utils.ValidateUtil;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
-import org.androidannotations.annotations.CheckedChange;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.TextChange;
@@ -25,87 +22,62 @@ import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.rest.spring.annotations.RestService;
 
-@EActivity(R.layout.activity_register)
-public class RegisterActivity extends BaseActivity {
-
+@EActivity(R.layout.activity_forget_pass)
+public class ForgetPassActivity extends BaseActivity {
     //网络请求
     @RestService
     MyRestClient restClient;
 
-    //手机号
-    @ViewById(R.id.registerMobileET)
-    EditText registerMobileET;
-    //验证码
-    @ViewById(R.id.registerCheckCodeET)
-    EditText registerCheckCodeET;
-    //推荐码
-    @ViewById(R.id.registerRecommendCodeET)
-    EditText registerRecommendCodeET;
-    //发送验证码
-    @ViewById(R.id.registerSendCheckCodeBtn)
-    Button loginSendCheckCodeBtn;
-    //下一步
-    @ViewById(R.id.registerNextStepBtn)
-    Button registerNextStepBtn;
+    @ViewById(R.id.et_mobile)
+    EditText et_mobile;
 
-    @ViewById(R.id.cb_register_condition)
-    CheckBox cb_register_condition;
+    @ViewById(R.id.et_forgetpass_checkcode)
+    EditText et_forgetpass_checkcode;
+
+    @ViewById(R.id.btn_frogetpass_send_checkcode)
+    Button btn_frogetpass_send_checkcode;
+
+    @ViewById(R.id.btn_forget_next)
+    Button btn_forget_next;
 
     MyCountDownTimer mc;
-
 
     @AfterViews
     void afterViews(){
         //title
-        setTitle(R.id.navigation_bar_back_tv,R.string.register);
+        setTitle(R.id.navigation_bar_back_tv,R.string.forget_password);
         mc = new MyCountDownTimer(60000,1000);
     }
 
+    @TextChange({R.id.et_mobile,R.id.et_forgetpass_checkcode})
+    void textChange(){
+        btn_frogetpass_send_checkcode.setEnabled(ValidateUtil.isMobileNumber(et_mobile.getText().toString()));
+        btn_forget_next.setEnabled(ValidateUtil.isMobileNumber(et_mobile.getText().toString()) && ValidateUtil.isCheckCode(et_forgetpass_checkcode.getText().toString()));
+    }
 
-    @Click({R.id.navigation_bar_back_ib,R.id.registerNextStepBtn,R.id.registerSendCheckCodeBtn})
+    @Click({R.id.btn_forget_next,R.id.btn_frogetpass_send_checkcode})
     void click(View v){
-        switch (v.getId()){
-            case R.id.navigation_bar_back_ib: {    //Back
-                finish();
-                break;
-            }
-            case R.id.registerSendCheckCodeBtn: {    //发送验证码
-                //显示进度指示
-                showProcessHUD(null);
-                mc.start();
-                loginSendCheckCodeBtn.setEnabled(false);
-                //请求验证码
-                sendCheckCodeInBackground(registerMobileET.getText().toString());
-                break;
-            }
-            case R.id.registerNextStepBtn: {    //下一步
-                String mobile = registerMobileET.getText().toString();
-                String check_code = registerCheckCodeET.getText().toString();
+        switch(v.getId()){
+            case R.id.btn_forget_next:{
+                String mobile = et_mobile.getText().toString();
+                String check_code = et_forgetpass_checkcode.getText().toString();
                 Intent intent = RegisterPassActivity_.intent(this).mobile(mobile).chekcode(check_code).get();
                 startActivity(intent);
                 break;
             }
-            default:
+            case R.id.btn_frogetpass_send_checkcode:{
+                //显示进度指示
+                showProcessHUD(null);
+                btn_frogetpass_send_checkcode.setEnabled(false);
+                mc.start();
+                //请求验证码
+                sendCheckCodeInBackground(et_mobile.getText().toString());
                 break;
+            }
+            default:break;
         }
     }
-    /**
-     *
-     * 监听选中事件
-     */
-    @CheckedChange(R.id.cb_register_condition)
-    void check(CompoundButton checkbox, boolean isChecked){
-        registerNextStepBtn.setEnabled(ValidateUtil.isMobileNumber(registerMobileET.getText().toString()) && ValidateUtil.isCheckCode(registerCheckCodeET.getText().toString()) && cb_register_condition.isChecked());
-    }
 
-    /**
-     * 监听文本变化
-     * */
-    @TextChange({R.id.registerMobileET, R.id.registerCheckCodeET})
-    void onLoginTextChange(){
-        loginSendCheckCodeBtn.setEnabled(ValidateUtil.isMobileNumber(registerMobileET.getText().toString()));
-        registerNextStepBtn.setEnabled(ValidateUtil.isMobileNumber(registerMobileET.getText().toString()) && ValidateUtil.isCheckCode(registerCheckCodeET.getText().toString()) && cb_register_condition.isChecked());
-    }
     /***
      * 获取验证码
      * */
@@ -132,6 +104,7 @@ public class RegisterActivity extends BaseActivity {
         showToast(message);
     }
 
+
     class MyCountDownTimer extends CountDownTimer {
         /**
          * @param millisInFuture
@@ -151,14 +124,15 @@ public class RegisterActivity extends BaseActivity {
 
         @Override
         public void onFinish() {
-            loginSendCheckCodeBtn.setEnabled(true);
-            loginSendCheckCodeBtn.setText(R.string.send_again);
+            btn_frogetpass_send_checkcode.setEnabled(true);
+            btn_frogetpass_send_checkcode.setText(R.string.send_again);
         }
 
         @Override
         public void onTick(long millisUntilFinished) {
-            loginSendCheckCodeBtn.setText(millisUntilFinished / 1000 + "秒后重发");
+            btn_frogetpass_send_checkcode.setText(millisUntilFinished / 1000 + "秒后重发");
         }
 
     }
+
 }
