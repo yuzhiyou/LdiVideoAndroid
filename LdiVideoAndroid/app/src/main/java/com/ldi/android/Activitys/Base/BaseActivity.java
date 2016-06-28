@@ -46,6 +46,12 @@ public class BaseActivity extends AppCompatActivity {
             titleTv.setText(strID);
         }
     }
+    protected void setTitle(int resID,String title){
+        TextView titleTv = (TextView)findViewById(resID);
+        if (titleTv != null) {
+            titleTv.setText(title);
+        }
+    }
     /***
      * showProcessHUD
      * 			显示进度指示

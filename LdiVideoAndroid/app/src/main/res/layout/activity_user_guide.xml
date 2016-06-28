@@ -8,38 +8,9 @@
     android:clipToPadding="true"
     tools:context=".Activitys.UserGuideActivity">
 
-    <ImageView
-        android:id="@+id/userGuideLogoImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="100dp"
-        android:contentDescription="@string/app_name"
-        android:src="@mipmap/logo" />
-
-    <LinearLayout
-        android:layout_gravity="bottom"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/guide_viewpager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/userGuideRegisterBtn"
-            style="@style/text_white_16"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/login_button_height"
-            android:text="@string/register"
-            android:background="@color/red_btn_bg_color"/>
-
-        <Button
-            android:id="@+id/userGuideLoginBtn"
-            style="@style/text_darkgray_16"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="@dimen/login_button_height"
-            android:text="@string/login"
-            android:background="@android:color/white"/>
-
-    </LinearLayout>
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

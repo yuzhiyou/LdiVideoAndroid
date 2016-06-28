@@ -19,7 +19,7 @@
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
         android:inputType="phone"
-        android:ems="11"
+        android:maxLength="11"
         android:layout_width="match_parent"
         android:layout_height="@dimen/login_edittext_height"
         android:hint="@string/mobile_hint"
@@ -74,16 +74,31 @@
         android:textColorHint="@color/gray_btn_bg_color"
         android:background="@drawable/input_edittext_bg" />
 
-    <CheckBox
-        android:id="@+id/cb_register_condition"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:checked="true"
-        android:text="@string/register_condition"/>
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/registerConditionCb"
+            style="@style/CustomCheckboxTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"/>
+        <TextView
+            android:id="@+id/registerConditionTv"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/gray_btn_bg_color"
+            android:text="@string/register_condition"/>
+    </LinearLayout>
+
     <Button
         android:id="@+id/registerNextStepBtn"
         style="@style/text_white_16"

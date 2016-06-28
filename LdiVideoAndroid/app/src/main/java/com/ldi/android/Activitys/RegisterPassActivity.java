@@ -9,6 +9,8 @@ import com.ldi.android.App_;
 import com.ldi.android.Beans.User;
 import com.ldi.android.Beans.WepApi.Request.UserRegisterRequest;
 import com.ldi.android.Beans.WepApi.Response.UserLoginResponse;
+import com.ldi.android.Beans.WepApi.Response.UserRegisterResponse;
+import com.ldi.android.EventBus.MessageEvent;
 import com.ldi.android.Net.MyRestClient;
 import com.ldi.android.R;
 import com.ldi.android.Utils.LogUtils;
@@ -22,6 +24,7 @@ import org.androidannotations.annotations.TextChange;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.rest.spring.annotations.RestService;
+import org.greenrobot.eventbus.EventBus;
 
 @EActivity(R.layout.activity_register_pass)
 public class RegisterPassActivity extends BaseActivity {
@@ -92,21 +95,21 @@ public class RegisterPassActivity extends BaseActivity {
         action.setU_password(password);
         action.setVerify_code(verify_code);
         try {
-            UserLoginResponse response = restClient.userRegister(action);
+            UserRegisterResponse response = restClient.userRegister(action);
 
             //status为0时请求成功
             if (response.getStatus() == 0) {
-                userRegeisterResult(response.getData(),"注册成功!");
+                userRegisterResult(response.getData(),"注册成功!");
             }else{
-                userRegeisterResult(null,"注册失败!");
+                userRegisterResult(null,"注册失败!");
             }
         }catch (Exception e){
-            userRegeisterResult(null,e.getLocalizedMessage());
+            userRegisterResult(null,e.getLocalizedMessage());
         }
     }
 
     @UiThread
-    void userRegeisterResult(User user,String msg){
+    void userRegisterResult(User user,String msg){
         //隐藏进度指示
         hideProcessHUD();
         if (user != null) {
@@ -114,6 +117,10 @@ public class RegisterPassActivity extends BaseActivity {
             App_.getInstance().mUser = user;
             //保存到SharedPreferences中
             User.saveUser(this,user);
+            //通知界面退出
+            EventBus.getDefault().post(new MessageEvent(MessageEvent.LOGIN_SUCCESS_EVENT));
+            //进入主界面
+            MainActivity_.intent(this).start();
             //完成
             finish();
         }

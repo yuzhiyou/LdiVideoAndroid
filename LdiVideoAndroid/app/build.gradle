@@ -60,6 +60,9 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     //百分比布局
     compile 'com.zhy:percent-support-extends:1.1.1'
+    //event bus
+    compile 'org.greenrobot:eventbus:3.0.0'
+    //Video
     compile project(':giraffeplayer')
 }
 

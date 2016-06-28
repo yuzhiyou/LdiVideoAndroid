@@ -15,6 +15,7 @@ import com.ldi.android.App_;
 import com.ldi.android.Beans.User;
 import com.ldi.android.Beans.WepApi.Request.UserLoginRequest;
 import com.ldi.android.Beans.WepApi.Response.UserLoginResponse;
+import com.ldi.android.EventBus.MessageEvent;
 import com.ldi.android.Net.MyRestClient;
 import com.ldi.android.R;
 import com.ldi.android.Utils.ValidateUtil;
@@ -27,6 +28,7 @@ import org.androidannotations.annotations.TextChange;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.rest.spring.annotations.RestService;
+import org.greenrobot.eventbus.EventBus;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends BaseActivity {
@@ -160,6 +162,10 @@ public class LoginActivity extends BaseActivity {
             App_.getInstance().mUser = user;
             //保存到SharedPreferences中
             User.saveUser(this,user);
+            //通知界面退出
+            EventBus.getDefault().post(new MessageEvent(MessageEvent.LOGIN_SUCCESS_EVENT));
+            //进入主界面
+            MainActivity_.intent(this).start();
             //完成
             finish();
         }

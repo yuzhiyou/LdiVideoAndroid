@@ -60,13 +60,17 @@ public class LaunchActivity extends BaseActivity implements  Animator.AnimatorLi
     @UiThread
     void startEnter(){
         if (App_.getInstance().mUser == null) { //未登录
-            //注册登录页
-            UserGuideActivity_.intent(this).start();
+            if (App_.getInstance().getFirstEnter(this)) { //都一次进入软件
+                UserGuideActivity_.intent(this).start();
+                App_.getInstance().saveFirstEnter(this);
+            }else {
+                //注册登录页
+                UserEnterActivity_.intent(this).start();
+            }
         }else{                                  //已登录,调到主界面
             //播放视频
             GiraffePlayerActivity.configPlayer(this).play("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
         }
-
 
         finish();
     }

@@ -2,6 +2,12 @@ package com.ldi.android.Activitys;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.support.v4.app.ActivityCompat;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,6 +17,8 @@ import android.widget.EditText;
 import com.ldi.android.Activitys.Base.BaseActivity;
 import com.ldi.android.Beans.WepApi.Request.CheckCodeRequest;
 import com.ldi.android.Beans.WepApi.Response.StatusResponse;
+import com.ldi.android.Constants;
+import com.ldi.android.EventBus.MessageEvent;
 import com.ldi.android.Net.MyRestClient;
 import com.ldi.android.R;
 import com.ldi.android.Utils.ValidateUtil;
@@ -24,6 +32,8 @@ import org.androidannotations.annotations.TextChange;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.rest.spring.annotations.RestService;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 @EActivity(R.layout.activity_register)
 public class RegisterActivity extends BaseActivity {
@@ -48,25 +58,38 @@ public class RegisterActivity extends BaseActivity {
     @ViewById(R.id.registerNextStepBtn)
     Button registerNextStepBtn;
 
-    @ViewById(R.id.cb_register_condition)
-    CheckBox cb_register_condition;
+    @ViewById(R.id.registerConditionCb)
+    CheckBox registerConditionCb;
 
     MyCountDownTimer mc;
 
 
     @AfterViews
     void afterViews(){
+        //Eventbus
+        EventBus.getDefault().register(this);
         //title
         setTitle(R.id.navigation_bar_back_tv,R.string.register);
         mc = new MyCountDownTimer(60000,1000);
     }
 
-
-    @Click({R.id.navigation_bar_back_ib,R.id.registerNextStepBtn,R.id.registerSendCheckCodeBtn})
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+    @Click({R.id.navigation_bar_back_ib,R.id.registerConditionTv,R.id.registerNextStepBtn,R.id.registerSendCheckCodeBtn})
     void click(View v){
         switch (v.getId()){
             case R.id.navigation_bar_back_ib: {    //Back
                 finish();
+                break;
+            }
+            case R.id.registerConditionTv: {    //注册条款
+                WebViewClientActivity_.intent(this)
+                        .extra("title",getString(R.string.register_condition_title))
+                        .extra("url",Constants.kRegisterConditionUrl)
+                        .start();
                 break;
             }
             case R.id.registerSendCheckCodeBtn: {    //发送验证码
@@ -81,8 +104,12 @@ public class RegisterActivity extends BaseActivity {
             case R.id.registerNextStepBtn: {    //下一步
                 String mobile = registerMobileET.getText().toString();
                 String check_code = registerCheckCodeET.getText().toString();
-                Intent intent = RegisterPassActivity_.intent(this).mobile(mobile).chekcode(check_code).get();
-                startActivity(intent);
+
+                RegisterPassActivity_
+                        .intent(this)
+                        .extra("mobile",mobile)
+                        .extra("chekcode",check_code)
+                        .start();
                 break;
             }
             default:
@@ -93,9 +120,9 @@ public class RegisterActivity extends BaseActivity {
      *
      * 监听选中事件
      */
-    @CheckedChange(R.id.cb_register_condition)
+    @CheckedChange(R.id.registerConditionCb)
     void check(CompoundButton checkbox, boolean isChecked){
-        registerNextStepBtn.setEnabled(ValidateUtil.isMobileNumber(registerMobileET.getText().toString()) && ValidateUtil.isCheckCode(registerCheckCodeET.getText().toString()) && cb_register_condition.isChecked());
+        registerNextStepBtn.setEnabled(ValidateUtil.isMobileNumber(registerMobileET.getText().toString()) && ValidateUtil.isCheckCode(registerCheckCodeET.getText().toString()) && registerConditionCb.isChecked());
     }
 
     /**
@@ -104,7 +131,7 @@ public class RegisterActivity extends BaseActivity {
     @TextChange({R.id.registerMobileET, R.id.registerCheckCodeET})
     void onLoginTextChange(){
         loginSendCheckCodeBtn.setEnabled(ValidateUtil.isMobileNumber(registerMobileET.getText().toString()));
-        registerNextStepBtn.setEnabled(ValidateUtil.isMobileNumber(registerMobileET.getText().toString()) && ValidateUtil.isCheckCode(registerCheckCodeET.getText().toString()) && cb_register_condition.isChecked());
+        registerNextStepBtn.setEnabled(ValidateUtil.isMobileNumber(registerMobileET.getText().toString()) && ValidateUtil.isCheckCode(registerCheckCodeET.getText().toString()) && registerConditionCb.isChecked());
     }
     /***
      * 获取验证码
@@ -160,5 +187,11 @@ public class RegisterActivity extends BaseActivity {
             loginSendCheckCodeBtn.setText(millisUntilFinished / 1000 + "秒后重发");
         }
 
+    }
+    @Subscribe
+    public void onEvent(MessageEvent event) {
+        if (event.getId() == MessageEvent.LOGIN_SUCCESS_EVENT){
+            finish();
+        }
     }
 }

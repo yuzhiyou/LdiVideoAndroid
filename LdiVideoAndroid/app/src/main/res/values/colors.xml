@@ -6,6 +6,10 @@
 
     <!--启动页-->
     <color name="launch_bg_color">#1b1b1b</color>
+    <!--引导页-->
+    <color name="guide_page1_color">#f5584d</color>
+    <color name="guide_page2_color">#6bc94b</color>
+    <color name="guide_page3_color">#ff6c00</color>
     <!--登录注册-->
     <color name="gray_btn_bg_color">#929292</color>
     <color name="gray_text_bg_color">#bebebe</color>

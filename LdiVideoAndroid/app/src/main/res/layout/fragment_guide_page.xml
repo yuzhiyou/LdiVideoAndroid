@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:id="@+id/fragmentGuidePageBgView"
+    android:gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/guide_page1_color">
+    <ImageView
+        android:id="@+id/fragmentGuidePageLogoIV"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/guide1_logo"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitCenter" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="80dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        >
+        <ImageView
+            android:id="@+id/fragmentGuidePagePointerIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/app_name"
+            android:src="@mipmap/guide1_pointer"/>
+    </LinearLayout>
+
+</LinearLayout>
