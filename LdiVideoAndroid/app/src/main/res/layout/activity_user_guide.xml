@@ -26,15 +26,17 @@
             android:id="@+id/userGuideRegisterBtn"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="注册"/>
+            android:layout_height="@dimen/login_button_height"
+            android:text="@string/register"
+            android:background="@drawable/red_btn_bg_selector"/>
 
         <Button
             android:id="@+id/userGuideLoginBtn"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="登录"/>
+            android:layout_height="@dimen/login_button_height"
+            android:text="@string/login"
+            android:background="@drawable/red_btn_bg_selector"/>
 
     </LinearLayout>
 

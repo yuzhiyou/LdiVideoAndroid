@@ -1,12 +1,12 @@
 package com.ldi.android.Activitys;
 
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.ldi.android.Activitys.Base.BaseActivity;
+import com.ldi.android.Beans.WepApi.Request.CheckCodeRequest;
+import com.ldi.android.Beans.WepApi.Response.StatusResponse;
 import com.ldi.android.Net.MyRestClient;
 import com.ldi.android.R;
 import com.ldi.android.Utils.ValidateUtil;
@@ -19,8 +19,8 @@ import org.androidannotations.annotations.TextChange;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.rest.spring.annotations.RestService;
+import org.androidannotations.rest.spring.api.MediaType;
 import org.json.JSONObject;
-import org.springframework.util.LinkedMultiValueMap;
 
 @EActivity(R.layout.activity_register)
 public class RegisterActivity extends BaseActivity {
@@ -87,12 +87,11 @@ public class RegisterActivity extends BaseActivity {
      * */
     @Background
     void sendCheckCodeInBackground(String mobile){
-        LinkedMultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
-        param.add("v_phone", mobile);
+        CheckCodeRequest action = new CheckCodeRequest();
+        action.setU_phone(mobile);
         try {
-            String json = restClient.getCheckCode(param);
-            JSONObject response = new JSONObject(json);
-            if (response.getBoolean("success")) {
+            StatusResponse response = restClient.getCheckCode(action);
+            if (response.getStatus() == 0) {
                 sendCheckCodeResult("发送验证码成功!");
             }else{
                 sendCheckCodeResult("发送验证码失败!");

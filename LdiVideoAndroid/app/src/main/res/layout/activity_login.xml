@@ -78,27 +78,31 @@
         />
     <TextView
         android:id="@+id/loginRegisterTv"
-        style="@style/text_darkgray_14"
+        style="@style/text_white_14"
         android:layout_below="@+id/loginBtn"
         android:layout_alignLeft="@+id/loginBtn"
         android:clickable="true"
         android:layout_marginTop="10dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/login_textview_height"
+        android:background="@drawable/gray_text_bg"
+        android:gravity="center"
         android:text="@string/now_register"/>
     <TextView
         android:id="@+id/loginForgetPasswordTv"
-        style="@style/text_darkgray_14"
+        style="@style/text_white_14"
         android:layout_below="@+id/loginBtn"
         android:layout_alignRight="@+id/loginBtn"
         android:clickable="true"
         android:layout_marginTop="10dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/login_textview_height"
+        android:background="@drawable/gray_text_bg"
+        android:gravity="center"
         android:text="@string/forget_password"/>
 
 </RelativeLayout>

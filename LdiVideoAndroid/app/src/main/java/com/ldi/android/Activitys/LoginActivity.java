@@ -1,8 +1,6 @@
 package com.ldi.android.Activitys;
 
-import android.app.Activity;
 import android.graphics.drawable.Drawable;
-import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.text.InputType;
 import android.text.TextUtils;
@@ -16,11 +14,12 @@ import com.google.gson.Gson;
 import com.ldi.android.Activitys.Base.BaseActivity;
 import com.ldi.android.App_;
 import com.ldi.android.Beans.User;
+import com.ldi.android.Beans.WepApi.Request.UserLoginRequest;
+import com.ldi.android.Beans.WepApi.Response.UserLoginResponse;
 import com.ldi.android.Net.MyRestClient;
 import com.ldi.android.R;
 import com.ldi.android.Utils.ValidateUtil;
 
-import org.androidannotations.annotations.AfterExtras;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
@@ -29,8 +28,8 @@ import org.androidannotations.annotations.TextChange;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.rest.spring.annotations.RestService;
+import org.androidannotations.rest.spring.api.MediaType;
 import org.json.JSONObject;
-import org.springframework.util.LinkedMultiValueMap;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends BaseActivity {
@@ -140,16 +139,14 @@ public class LoginActivity extends BaseActivity {
     @Background
     void userLoginInBackground(String mobile,String password){
         //参数设置
-        LinkedMultiValueMap<String, Object> param = new LinkedMultiValueMap<>();
-        param.add("u_phone", mobile);
-        param.add("u_password", mobile);
+        UserLoginRequest action = new UserLoginRequest();
+        action.setU_phone(mobile);
+        action.setU_password(password);
         try {
-            String json = restClient.userLogin(param);
-            JSONObject response = new JSONObject(json);
+            UserLoginResponse response = restClient.userLogin(action);
             //status为0时请求成功
-            if (response.optInt("status",-1) == 0) {
-                User user = new Gson().fromJson(response.getJSONObject("data").toString(),User.class);
-                userLoginResult(user,"登录成功!");
+            if (response.getStatus() == 0) {
+                userLoginResult(response.getData(),"登录成功!");
             }else{
                 userLoginResult(null,"登录失败!");
             }
