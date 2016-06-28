@@ -123,7 +123,7 @@ public class LoginActivity extends BaseActivity {
                 break;
             }
             case R.id.loginForgetPasswordTv:  //忘记密码
-
+                ForgetPassActivity_.intent(this).start();
                 break;
             case R.id.loginRegisterTv:  //立即注册
                 RegisterActivity_.intent(this).start();

@@ -11,11 +11,13 @@ import com.ldi.android.Beans.WepApi.Request.UserRegisterRequest;
 import com.ldi.android.Beans.WepApi.Response.UserLoginResponse;
 import com.ldi.android.Net.MyRestClient;
 import com.ldi.android.R;
+import com.ldi.android.Utils.LogUtils;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.TextChange;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
@@ -37,27 +39,46 @@ public class RegisterPassActivity extends BaseActivity {
     @ViewById(R.id.registerSubmit)
     Button registerSubmit;
 
+    @Extra("mobile")
+    String mobile;
+
+    @Extra("chekcode")
+    String chekcode;
+
     @AfterViews
     void afterViews(){
         //title
         setTitle(R.id.navigation_bar_back_tv,R.string.register);
     }
 
-    @Click(R.id.registerSubmit)
-    void click(){
-        if(passwordET.getText().toString().equalsIgnoreCase(passwordConfirmET.getText().toString())){
-            //隐藏键盘
-            hideSoftKeyboard(passwordConfirmET);
-            //进度指示
-            showProcessHUD(null);
-            userRegisterBackground("",passwordET.getText().toString(),"");
-        }else{
-            showToast(R.string.pass_not_same);
+    @Click({R.id.navigation_bar_back_ib,R.id.registerSubmit})
+    void click(View v){
+        switch (v.getId()){
+            case R.id.navigation_bar_back_ib: {  //导航条返回
+                finish();
+                break;
+            }
+            case R.id.registerSubmit: {  //导航条返回
+                if(passwordET.getText().toString().equalsIgnoreCase(passwordConfirmET.getText().toString())){
+                    //隐藏键盘
+                    hideSoftKeyboard(passwordConfirmET);
+                    //进度指示
+                    showProcessHUD(null);
+                    LogUtils.putLog(mobile+"=="+chekcode);
+                    userRegisterBackground(mobile,passwordET.getText().toString(),chekcode);
+                }else{
+                    showToast(R.string.pass_not_same);
+                }
+                break;
+            }
+            default:
+                break;
         }
+
     }
 
     @TextChange({R.id.passwordET,R.id.passwordConfirmET})
-    void textChange(View v){
+    void textChange(){
         registerSubmit.setEnabled(passwordET.getText().toString().length() > 5 && passwordConfirmET.getText().toString().length()>5);
     }
     /***

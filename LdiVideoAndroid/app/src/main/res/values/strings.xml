@@ -18,5 +18,6 @@
     <string name="password_confirm">重新输入密码</string>
     <string name="submit">提交</string>
     <string name="pass_not_same">请输入相同的密码</string>
+    <string name="send_again">重新获取</string>
 
 </resources>

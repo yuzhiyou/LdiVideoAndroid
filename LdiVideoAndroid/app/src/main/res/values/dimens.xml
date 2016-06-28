@@ -7,4 +7,5 @@
 
     <dimen name="login_textview_height">36dp</dimen>
     <dimen name="login_textview_radius">18dp</dimen>
+    <dimen name="edittext_margin">30dp</dimen>
 </resources>
