@@ -143,4 +143,13 @@ public class BaseActivity extends AppCompatActivity {
     protected void showToast(String title){
         Toast.makeText(this, title,Toast.LENGTH_SHORT).show();
     }
+
+    /***
+     * showToast
+     * 			显示提示
+     * @param resID 显示文本的资源ID
+     * */
+    protected void showToast(int resID){
+        Toast.makeText(this, resID,Toast.LENGTH_SHORT).show();
+    }
 }

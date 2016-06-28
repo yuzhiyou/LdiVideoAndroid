@@ -22,6 +22,7 @@
         <activity android:name=".Activitys.UserGuideActivity_" />
         <activity android:name=".Activitys.LoginActivity_" />
         <activity android:name=".Activitys.RegisterActivity_" />
+        <activity android:name=".Activitys.RegisterPassActivity_" />
     </application>
 
 </manifest>

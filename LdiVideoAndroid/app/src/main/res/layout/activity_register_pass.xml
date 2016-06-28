@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:fitsSystemWindows="true"
+              android:clipToPadding="true"
+              tools:context="com.ldi.android.Activitys.RegisterPassActivity">
+
+    <!--导航条-->
+    <include android:id="@+id/include" layout="@layout/navigation_bar_back" />
+
+    <EditText
+        android:id="@+id/passwordET"
+        style="@style/text_darkgray_14"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_edittext_height"
+        android:inputType="textPassword"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:ems="10"
+        android:layout_marginTop="45dp"
+        android:layout_below="@+id/include"
+        android:hint="@string/password"
+        android:paddingLeft="5dp"
+        android:textColorHint="@color/gray_btn_bg_color"
+        android:background="@drawable/input_edittext_bg"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/registerSubmit"
+        style="@style/text_white_16"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_button_height"
+        android:text="@string/submit"
+        android:enabled="false"
+        android:layout_below="@+id/passwordConfirmET"
+        android:background="@drawable/red_btn_bg_selector"
+        />
+
+    <EditText
+        android:id="@+id/passwordConfirmET"
+        style="@style/text_darkgray_14"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_edittext_height"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:layout_marginTop="19dp"
+        android:hint="@string/password_confirm"
+        android:paddingLeft="5dp"
+        android:textColorHint="@color/gray_btn_bg_color"
+        android:background="@drawable/input_edittext_bg"
+        android:layout_below="@+id/passwordET"
+        android:layout_alignLeft="@+id/passwordET"
+        android:layout_alignStart="@+id/passwordET"/>
+
+
+</RelativeLayout>

@@ -19,8 +19,6 @@ import org.androidannotations.annotations.TextChange;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.rest.spring.annotations.RestService;
-import org.androidannotations.rest.spring.api.MediaType;
-import org.json.JSONObject;
 
 @EActivity(R.layout.activity_register)
 public class RegisterActivity extends BaseActivity {
