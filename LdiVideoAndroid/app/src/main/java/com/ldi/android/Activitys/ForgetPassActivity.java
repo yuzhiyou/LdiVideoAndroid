@@ -55,9 +55,13 @@ public class ForgetPassActivity extends BaseActivity {
         btn_forget_next.setEnabled(ValidateUtil.isMobileNumber(et_mobile.getText().toString()) && ValidateUtil.isCheckCode(et_forgetpass_checkcode.getText().toString()));
     }
 
-    @Click({R.id.btn_forget_next,R.id.btn_frogetpass_send_checkcode})
+    @Click({R.id.navigation_bar_back_ib,R.id.btn_forget_next,R.id.btn_frogetpass_send_checkcode})
     void click(View v){
         switch(v.getId()){
+            case R.id.navigation_bar_back_ib:{
+                finish();
+                break;
+            }
             case R.id.btn_forget_next:{
                 String mobile = et_mobile.getText().toString();
                 String check_code = et_forgetpass_checkcode.getText().toString();

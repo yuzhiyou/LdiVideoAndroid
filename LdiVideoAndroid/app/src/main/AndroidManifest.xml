@@ -2,15 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.ldi.android">
 
-<<<<<<< HEAD
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-=======
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
->>>>>>> origin/master
 
     <application
         android:name=".App_"
@@ -22,13 +17,8 @@
         <activity android:name=".Activitys.LaunchActivity_" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
-<<<<<<< HEAD
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.LAUNCHER" />
-=======
-                <category android:name="android.intent.category.LAUNCHER"/>
->>>>>>> origin/master
             </intent-filter>
         </activity>
         <activity android:name=".Activitys.UserGuideActivity_"/>

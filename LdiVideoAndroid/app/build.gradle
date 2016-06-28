@@ -4,7 +4,7 @@ def AAVersion = '4.0.0'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "24.0.0"
 
     defaultConfig {
         applicationId "com.ldi.android"
@@ -29,37 +29,6 @@ android {
         exclude 'META-INF/notice.txt'
     }
 }
-
-dependencies {
-<<<<<<< HEAD
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:23.4.0'
-=======
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-
->>>>>>> origin/master
-    //AA
-    apt "org.androidannotations:androidannotations:$AAVersion"
-    compile "org.androidannotations:androidannotations-api:$AAVersion"
-    //AA rest
-    //状态栏设置
-    //圆角图片
-    //网络图片加载
-    compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'org.androidannotations:rest-spring-api:4.0.0'
-    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
-    compile 'de.hdodenhof:circleimageview:2.0.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
-<<<<<<< HEAD
-    //百分比布局
-    compile 'com.zhy:percent-support-extends:1.1.1'
-    compile project(':giraffeplayer')
-=======
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha1'
-    testCompile 'junit:junit:4.12'
-    apt 'org.androidannotations:rest-spring:4.0.0'
-}
 apt {
     arguments {
         androidManifestFile variant.outputs[0]?.processResources?.manifestFile
@@ -72,5 +41,26 @@ apt {
         // logLevel 'INFO'
         // logFile '/var/log/aa.log'
     }
->>>>>>> origin/master
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha1'
+    //AA
+    compile "org.androidannotations:rest-spring-api:4.0.0"
+    apt "org.androidannotations:rest-spring:4.0.0"
+    //AA rest
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+    //状态栏设置
+    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    //圆角图片
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+    //网络图片加载
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    //百分比布局
+    compile 'com.zhy:percent-support-extends:1.1.1'
+    compile project(':giraffeplayer')
+}
+
 }
