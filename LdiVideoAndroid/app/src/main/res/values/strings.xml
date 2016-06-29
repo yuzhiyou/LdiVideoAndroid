@@ -21,4 +21,12 @@
     <string name="pass_not_same">请输入相同的密码</string>
     <string name="send_again">重新获取</string>
 
+    <!--Tabbar-->
+    <string name="tabar_home">首页</string>
+    <string name="tabar_video">拍摄</string>
+    <string name="tabar_profile">我的</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

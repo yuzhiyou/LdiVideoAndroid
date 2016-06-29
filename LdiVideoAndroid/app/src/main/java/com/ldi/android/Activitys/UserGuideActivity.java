@@ -1,26 +1,15 @@
 package com.ldi.android.Activitys;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 
-import com.ldi.android.Activitys.Base.BaseActivity;
-import com.ldi.android.Activitys.Fragments.GuideFragment;
+import com.ldi.android.Activitys.Fragments.Guide.GuideFragment;
 import com.ldi.android.Adapter.GuidePageAdapter;
-import com.ldi.android.EventBus.MessageEvent;
-import com.ldi.android.Net.MyRestClient;
 import com.ldi.android.R;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.rest.spring.annotations.RestService;
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;

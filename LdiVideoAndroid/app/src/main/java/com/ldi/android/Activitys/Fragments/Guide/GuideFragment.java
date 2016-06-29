@@ -1,14 +1,13 @@
-package com.ldi.android.Activitys.Fragments;
+package com.ldi.android.Activitys.Fragments.Guide;
 
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
+import com.ldi.android.Activitys.Fragments.Guide.GuideFragment_;
 import com.ldi.android.Activitys.UserEnterActivity_;
 import com.ldi.android.R;
 

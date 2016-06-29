@@ -68,8 +68,9 @@ public class LaunchActivity extends BaseActivity implements  Animator.AnimatorLi
                 UserEnterActivity_.intent(this).start();
             }
         }else{                                  //已登录,调到主界面
+            MainActivity_.intent(this).start();
             //播放视频
-            GiraffePlayerActivity.configPlayer(this).play("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+           // GiraffePlayerActivity.configPlayer(this).play("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
         }
 
         finish();
