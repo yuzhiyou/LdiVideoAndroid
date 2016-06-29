@@ -25,4 +25,8 @@
     <color name="tabBarTextNormalColor">#707070</color>
     <color name="tabBarBackgroundColor">#f6f6f6</color>
     <color name="tabBarLineColor">#DEDEDE</color>
+    <color name="white">#ffffff</color>
+
+    <color name="black">#000000</color>
+
 </resources>
