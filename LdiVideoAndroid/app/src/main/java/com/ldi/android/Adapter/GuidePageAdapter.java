@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.ldi.android.Activitys.Fragments.GuideFragment;
+import com.ldi.android.Activitys.Fragments.Guide.GuideFragment;
 
 import java.util.ArrayList;
 import java.util.List;
