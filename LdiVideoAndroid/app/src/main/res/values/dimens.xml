@@ -8,4 +8,7 @@
     <dimen name="login_textview_height">36dp</dimen>
     <dimen name="login_textview_radius">18dp</dimen>
     <dimen name="edittext_margin">30dp</dimen>
+    <dimen name="title_first_text_size">15sp</dimen>
+    <dimen name="title_second_text_size">12sp</dimen>
+
 </resources>

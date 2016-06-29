@@ -69,8 +69,95 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary">
+                android:background="@color/white">
+                <View
+                    android:id="@+id/v_line1"
+                    android:layout_width="5dp"
+                    android:layout_height="20dp"
+                    android:background="@color/red_btn_bg_color"
+                    android:layout_marginTop="10dp"
+                    />
+                <TextView
+                    android:id="@+id/tv_voide_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/demo"
+                    android:layout_toRightOf="@+id/v_line1"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="8dp"/>
+                <TextView
+                    android:id="@+id/tv_video_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_alignBaseline="@+id/tv_voide_title"
+                    android:text="@string/more"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/tv_video_more">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:id="@+id/iv_demo_video1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_above="@+id/tv_demo_video1_title1"
+                            android:background="@color/red_btn_bg_color"/>
+                        <TextView
+                            android:id="@+id/tv_demo_video1_title1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/tv_demo_video1_title2"
+                            android:textSize="@dimen/title_first_text_size"
+                            android:text="一级标题"/>
+                        <TextView
+                            android:id="@+id/tv_demo_video1_title2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/title_second_text_size"
+                            android:text="二级标题"
+                            android:layout_alignParentBottom="true"
+                            />
 
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="4dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/iv_demo_video2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_above="@+id/tv_demo_video2_title1"
+                            android:background="@color/green_btn_bg_color"/>
+                        <TextView
+                            android:id="@+id/tv_demo_video2_title1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textSize="@dimen/title_first_text_size"
+                            android:layout_above="@+id/tv_demo_video2_title2"
+                            android:text="一级标题"/>
+                        <TextView
+                            android:id="@+id/tv_demo_video2_title2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="二级标题"
+                            android:textSize="@dimen/title_second_text_size"
+                            android:layout_alignParentBottom="true"
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
             </RelativeLayout>
 
             <RelativeLayout
@@ -78,7 +165,96 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:layout_marginTop="10dp"
-                android:background="@color/colorPrimary">
+                android:background="@color/white">
+
+                <View
+                    android:id="@+id/v_line2"
+                    android:layout_width="5dp"
+                    android:layout_height="20dp"
+                    android:background="@color/red_btn_bg_color"
+                    android:layout_marginTop="10dp"
+                    />
+                <TextView
+                    android:id="@+id/tv_recommend_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/recommend"
+                    android:layout_toRightOf="@+id/v_line2"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginLeft="8dp"/>
+                <TextView
+                    android:id="@+id/tv_recommend_more"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="8dp"
+                    android:layout_alignBaseline="@+id/tv_recommend_title"
+                    android:text="@string/more"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal"
+                    android:layout_below="@+id/tv_recommend_more">
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="4dp"
+                        android:layout_weight="1">
+                        <ImageView
+                            android:id="@+id/iv_recommend_video1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_above="@+id/tv_recommend_video1_title1"
+                            android:background="@color/red_btn_bg_color"/>
+                        <TextView
+                            android:id="@+id/tv_recommend_video1_title1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/tv_recommend_video1_title2"
+                            android:text="一级标题"
+                            android:textSize="@dimen/title_first_text_size"/>
+                        <TextView
+                            android:id="@+id/tv_recommend_video1_title2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="二级标题"
+                            android:textSize="@dimen/title_second_text_size"
+                            android:layout_alignParentBottom="true"
+                            />
+
+                    </RelativeLayout>
+                    <RelativeLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="4dp"
+                        android:layout_weight="1">
+
+                        <ImageView
+                            android:id="@+id/iv_recommend_video2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_above="@+id/tv_recommend_video2_title1"
+                            android:background="@color/green_btn_bg_color"/>
+                        <TextView
+                            android:id="@+id/tv_recommend_video2_title1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_above="@+id/tv_recommend_video2_title2"
+                            android:text="一级标题"
+                            android:textSize="@dimen/title_first_text_size"/>
+                        <TextView
+                            android:id="@+id/tv_recommend_video2_title2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="二级标题"
+                            android:textSize="@dimen/title_second_text_size"
+                            android:layout_alignParentBottom="true"
+                            />
+
+                    </RelativeLayout>
+
+                </LinearLayout>
 
             </RelativeLayout>
 
