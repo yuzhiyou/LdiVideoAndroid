@@ -28,5 +28,6 @@
     <color name="white">#ffffff</color>
 
     <color name="black">#000000</color>
+    <color name="banner_info_background">#bc000000</color>
 
 </resources>

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
              xmlns:tools="http://schemas.android.com/tools"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             tools:context="com.ldi.android.Activitys.Fragments.HomeFragment">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+                android:background="@color/colorBackground"
+             tools:context="com.ldi.android.Activitys.Fragments.Tabbar.HomeFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,19 +22,47 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1">
-                <android.support.v4.view.ViewPager
+                <com.ldi.android.flowwidget.ViewFlow
+                    android:id="@+id/viewflow"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/colorPrimary">
-
-                </android.support.v4.view.ViewPager>
+                    android:layout_height="200dp"
+                    android:background="@color/guide_page1_color" >
+                </com.ldi.android.flowwidget.ViewFlow>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
-                    android:layout_gravity="bottom"></RelativeLayout>
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:background="@color/banner_info_background"
+                    android:layout_gravity="bottom">
+                    <com.ldi.android.flowwidget.CircleFlowIndicator
+                        android:id="@+id/viewflowindic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:padding="5dp"
+                        app:activeColor="#ff6666"
+                        app:activeType="fill"
+                        app:circleSeparation="15dip"
+                        app:inactiveColor="#eeeeee"
+                        app:radius="3dip" />
+                    <TextView
+                        android:id="@+id/tv_info"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:drawablePadding="5dp"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="视频描述"
+                        android:textColor="#cacaca"
+                        android:textSize="16sp"
+                        android:layout_toLeftOf="@+id/viewflowindic"
+                        android:layout_toStartOf="@+id/viewflowindic"/>
+                </RelativeLayout>
             </FrameLayout>
-
-
 
             <RelativeLayout
                 android:layout_width="match_parent"
