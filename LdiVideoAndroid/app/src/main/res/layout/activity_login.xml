@@ -63,19 +63,6 @@
         android:contentDescription="@string/app_name"
         android:src="@mipmap/password_invisible"/>
 
-    <Button
-        android:id="@+id/loginBtn"
-        style="@style/text_white_16"
-        android:layout_below="@+id/loginPasswordET"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/login_button_height"
-        android:text="@string/login"
-        android:enabled="false"
-        android:background="@drawable/red_btn_bg_selector"
-        />
     <TextView
         android:id="@+id/loginRegisterTv"
         style="@style/text_white_14"
@@ -104,5 +91,18 @@
         android:background="@drawable/gray_text_bg"
         android:gravity="center"
         android:text="@string/forget_password"/>
+
+    <Button
+        android:id="@+id/loginBtn"
+        style="@style/text_white_16"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_button_height"
+        android:text="@string/login"
+        android:enabled="false"
+        android:background="@drawable/red_btn_bg_selector"
+        android:layout_below="@+id/loginPasswordET"
+        android:layout_alignLeft="@+id/loginPasswordET"
+        android:layout_alignStart="@+id/loginPasswordET"/>
 
 </RelativeLayout>

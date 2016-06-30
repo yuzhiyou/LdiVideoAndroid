@@ -10,6 +10,7 @@
     <string name="now_register">立即注册-></string>
     <string name="forget_password">忘记密码</string>
     <string name="login">登录</string>
+    <string name="logout">退出账号</string>
     <string name="register">注册</string>
     <string name="next_step">下一步</string>
     <string name="get_check_code">获取验证码</string>
@@ -29,5 +30,12 @@
     <string name="recommend">推荐</string>
     <string name="demo">示例</string>
     <string name="more">更多></string>
+    <string name="recode">观看记录</string>
+    <string name="my_video">我的视频</string>
+    <string name="gift">神秘大礼包</string>
+    <string name="change_info">修改资料</string>
+    <string name="change_pass">修改密码</string>
+    <string name="identity_verification">身份证审核</string>
+    <string name="appeal">在线申诉</string>
 
 </resources>
