@@ -1,23 +1,18 @@
 package com.ldi.android.Activitys;
 
-import android.app.Activity;
-import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.ldi.android.Activitys.Base.BaseActivity;
 import com.ldi.android.R;
+
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -93,6 +88,11 @@ public class WebViewClientActivity extends BaseActivity {
             super.onProgressChanged(view, newProgress);
         }
 
+        @Override
+        public void onReceivedTitle(WebView view, String title) {
+            super.onReceivedTitle(view, title);
+            setTitle(R.id.navigation_bar_back_tv,title);
+        }
     }
 
     @Click({R.id.navigation_bar_back_ib})

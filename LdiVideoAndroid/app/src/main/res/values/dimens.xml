@@ -10,5 +10,6 @@
     <dimen name="edittext_margin">30dp</dimen>
     <dimen name="title_first_text_size">15sp</dimen>
     <dimen name="title_second_text_size">12sp</dimen>
+    <dimen name="view_margin_padding">10dp</dimen>
 
 </resources>

@@ -103,6 +103,8 @@
         android:background="@drawable/red_btn_bg_selector"
         android:layout_below="@+id/loginPasswordET"
         android:layout_alignLeft="@+id/loginPasswordET"
-        android:layout_alignStart="@+id/loginPasswordET"/>
+        android:layout_alignStart="@+id/loginPasswordET"
+        android:layout_alignRight="@+id/loginPasswordET"
+        android:layout_alignEnd="@+id/loginPasswordET"/>
 
 </RelativeLayout>

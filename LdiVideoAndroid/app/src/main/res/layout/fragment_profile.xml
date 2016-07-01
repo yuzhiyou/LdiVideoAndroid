@@ -64,6 +64,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:paddingTop="@dimen/view_margin_padding"
+                android:paddingBottom="@dimen/view_margin_padding"
                 android:gravity="center_vertical"
                 android:background="@color/white">
                 <ImageView
@@ -71,7 +73,16 @@
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:src="@mipmap/ic_record"/>
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/ic_right_tip"/>
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -79,14 +90,9 @@
                     android:textColor="@color/black"
                     android:layout_marginLeft="5dp"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/iv_recode"/>
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"
-                    android:src="@mipmap/back"/>
+                    android:layout_toRightOf="@+id/iv_recode"
+                    android:layout_toEndOf="@+id/iv_recode"
+                    android:id="@+id/textView2"/>
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
@@ -97,13 +103,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:paddingTop="@dimen/view_margin_padding"
+                android:paddingBottom="@dimen/view_margin_padding"
                 android:background="@color/white">
                 <ImageView
                     android:id="@+id/iv_my_video"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:src="@mipmap/ic_my_video"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -117,8 +125,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"
-                    android:src="@mipmap/back"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/ic_right_tip"/>
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
@@ -129,13 +137,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:paddingTop="@dimen/view_margin_padding"
+                android:paddingBottom="@dimen/view_margin_padding"
                 android:background="@color/white">
                 <ImageView
                     android:id="@+id/iv_gift"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:src="@mipmap/ic_gift"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -149,8 +159,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"
-                    android:src="@mipmap/back"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/ic_right_tip"/>
             </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/rl_change_info"
@@ -158,13 +168,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:paddingTop="@dimen/view_margin_padding"
+                android:paddingBottom="@dimen/view_margin_padding"
                 android:background="@color/white">
                 <ImageView
                     android:id="@+id/iv_change_info"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:src="@mipmap/ic_change_profile"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -178,8 +190,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"
-                    android:src="@mipmap/back"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/ic_right_tip"/>
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
@@ -190,28 +202,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:paddingTop="@dimen/view_margin_padding"
+                android:paddingBottom="@dimen/view_margin_padding"
                 android:background="@color/white">
                 <ImageView
                     android:id="@+id/iv_change_pass"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/change_pass"
-                    android:layout_marginLeft="5dp"
-                    android:textColor="@color/black"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/iv_change_pass"/>
+                    android:src="@mipmap/ic_change_pass"/>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"
-                    android:src="@mipmap/back"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/ic_right_tip"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/change_pass"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="5dp"
+                    android:layout_alignBottom="@+id/iv_change_pass"
+                    android:layout_toRightOf="@+id/iv_change_pass"
+                    android:layout_toEndOf="@+id/iv_change_pass"
+                    android:id="@+id/textView3"/>
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
@@ -222,28 +240,34 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:paddingTop="@dimen/view_margin_padding"
+                android:paddingBottom="@dimen/view_margin_padding"
                 android:background="@color/white">
                 <ImageView
                     android:id="@+id/iv_identity_verification"
                     android:layout_marginLeft="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@mipmap/ic_launcher"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/identity_verification"
-                    android:layout_marginLeft="5dp"
-                    android:textColor="@color/black"
-                    android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/iv_identity_verification"/>
+                    android:src="@mipmap/ic_identity_verification"/>
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"
-                    android:src="@mipmap/back"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/ic_right_tip"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/identity_verification"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="5dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@+id/iv_identity_verification"
+                    android:layout_toEndOf="@+id/iv_identity_verification"
+                    android:id="@+id/textView"/>
             </RelativeLayout>
             <View
                 android:layout_width="match_parent"
@@ -254,13 +278,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
+                android:paddingTop="@dimen/view_margin_padding"
+                android:paddingBottom="@dimen/view_margin_padding"
                 android:background="@color/white">
                 <ImageView
                     android:id="@+id/iv_appeal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:src="@mipmap/ic_launcher"/>
+                    android:src="@mipmap/ic_appeal"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -274,8 +300,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"
-                    android:src="@mipmap/back"/>
+                    android:layout_marginRight="10dp"
+                    android:src="@mipmap/ic_right_tip"/>
             </RelativeLayout>
 
             <Button

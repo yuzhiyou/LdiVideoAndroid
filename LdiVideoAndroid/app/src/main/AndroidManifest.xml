@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ldi.android">
+          package="com.ldi.android">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:name=".App_"
@@ -18,20 +18,23 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activitys.LaunchActivity_">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Activitys.UserGuideActivity_" />
-        <activity android:name=".Activitys.LoginActivity_" />
-        <activity android:name=".Activitys.RegisterActivity_" />
-        <activity android:name=".Activitys.RegisterPassActivity_" />
-        <activity android:name=".Activitys.ForgetPassActivity_" />
-        <activity android:name=".Activitys.WebViewClientActivity_" />
-        <activity android:name=".Activitys.UserEnterActivity_" />
-        <activity android:name=".Activitys.MainActivity_" />
+        <activity android:name=".Activitys.UserGuideActivity_"/>
+        <activity android:name=".Activitys.LoginActivity_"/>
+        <activity android:name=".Activitys.RegisterActivity_"/>
+        <activity android:name=".Activitys.RegisterPassActivity_"/>
+        <activity android:name=".Activitys.ForgetPassActivity_"/>
+        <activity android:name=".Activitys.WebViewClientActivity_"/>
+        <activity android:name=".Activitys.UserEnterActivity_"/>
+        <activity android:name=".Activitys.MainActivity_"/>
+        <activity android:name=".Activitys.ChangePasswordActivity_"/>
+        <activity android:name=".Activitys.ChangeProfileActivity_">
+        </activity>
     </application>
 
 </manifest>

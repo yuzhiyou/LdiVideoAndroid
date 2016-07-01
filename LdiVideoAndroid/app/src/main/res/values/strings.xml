@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ldi视频</string>
+    <string name="app_name">真爱宣言</string>
 
     <!--登录\注册-->
     <string name="input_mobile_hint">请输入手机号码</string>
@@ -18,6 +18,9 @@
     <string name="register_condition_title">注册条款</string>
     <string name="password">密码</string>
     <string name="password_confirm">重新输入密码</string>
+    <string name="old_password_hint">原密码</string>
+    <string name="new_password_hint">新密码</string>
+    <string name="confirm_new_pass_hint">重新输入新密码</string>
     <string name="submit">提交</string>
     <string name="pass_not_same">请输入相同的密码</string>
     <string name="send_again">重新获取</string>
@@ -37,5 +40,8 @@
     <string name="change_pass">修改密码</string>
     <string name="identity_verification">身份证审核</string>
     <string name="appeal">在线申诉</string>
+    <string name="mail">邮箱</string>
+    <string name="address">地址</string>
+    <string name="ok">确定</string>
 
 </resources>

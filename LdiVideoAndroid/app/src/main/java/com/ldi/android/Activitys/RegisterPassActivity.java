@@ -8,7 +8,6 @@ import com.ldi.android.Activitys.Base.BaseActivity;
 import com.ldi.android.App_;
 import com.ldi.android.Beans.User;
 import com.ldi.android.Beans.WepApi.Request.UserRegisterRequest;
-import com.ldi.android.Beans.WepApi.Response.UserLoginResponse;
 import com.ldi.android.Beans.WepApi.Response.UserRegisterResponse;
 import com.ldi.android.EventBus.MessageEvent;
 import com.ldi.android.Net.MyRestClient;
@@ -61,7 +60,7 @@ public class RegisterPassActivity extends BaseActivity {
                 finish();
                 break;
             }
-            case R.id.registerSubmit: {  //导航条返回
+            case R.id.registerSubmit: {  //注册
                 if(passwordET.getText().toString().equalsIgnoreCase(passwordConfirmET.getText().toString())){
                     //隐藏键盘
                     hideSoftKeyboard(passwordConfirmET);
