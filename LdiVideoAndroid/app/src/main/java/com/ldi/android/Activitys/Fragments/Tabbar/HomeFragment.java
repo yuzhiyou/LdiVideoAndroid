@@ -1,17 +1,18 @@
 package com.ldi.android.Activitys.Fragments.Tabbar;
 
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.ldi.android.Activitys.Fragments.BaseFragment;
+import com.ldi.android.Activitys.VideoListActivity_;
 import com.ldi.android.R;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EFragment;
+
+import tcking.github.com.giraffeplayer.GiraffePlayerActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -44,6 +45,37 @@ public class HomeFragment extends BaseFragment {
     void afterViews() {
         //title
         setTitle(R.id.navigation_bar_title_tv,R.string.tabar_home);
+    }
+
+    @Click({R.id.iv_demo_video1,R.id.iv_demo_video2,R.id.iv_recommend_video1,R.id.iv_recommend_video2,R.id.tv_video_more,R.id.tv_recommend_more})
+    void click(View v){
+        switch (v.getId()){
+            case R.id.iv_demo_video1:{
+                goPlay("");
+                break;
+            }
+            case R.id.iv_demo_video2:{
+                goPlay("");
+                break;
+            }
+            case R.id.iv_recommend_video1:{
+                goPlay("");
+                break;
+            }
+            case R.id.iv_recommend_video2:{
+                goPlay("");
+                break;
+            }
+            case R.id.tv_recommend_more:
+            case R.id.tv_video_more:
+                VideoListActivity_.intent(this).start();
+                break;
+            default:break;
+        }
+    }
+
+    private void goPlay(String url){
+        GiraffePlayerActivity.configPlayer(getActivity()).play("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
     }
 
 }

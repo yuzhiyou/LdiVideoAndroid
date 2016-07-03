@@ -43,5 +43,6 @@
     <string name="mail">邮箱</string>
     <string name="address">地址</string>
     <string name="ok">确定</string>
+    <string name="all_demo">全部示例</string>
 
 </resources>

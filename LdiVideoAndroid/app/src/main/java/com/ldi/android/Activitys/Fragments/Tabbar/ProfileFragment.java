@@ -9,6 +9,8 @@ import com.ldi.android.Activitys.ChangePasswordActivity_;
 import com.ldi.android.Activitys.ChangeProfileActivity_;
 import com.ldi.android.Activitys.Fragments.BaseFragment;
 import com.ldi.android.Activitys.UserEnterActivity_;
+import com.ldi.android.Activitys.VideoListActivity_;
+import com.ldi.android.Activitys.WebViewClientActivity_;
 import com.ldi.android.App_;
 import com.ldi.android.Beans.User;
 import com.ldi.android.R;
@@ -79,12 +81,14 @@ public class ProfileFragment extends BaseFragment {
                 break;
             }
             case R.id.rl_gift: {
+                WebViewClientActivity_.intent(this).url("http://www.baidu.com").start();
                 break;
             }
             case R.id.rl_identity_verification: {
                 break;
             }
             case R.id.rl_my_video: {
+                VideoListActivity_.intent(this).start();
                 break;
             }
             case R.id.rl_change_info: {
@@ -92,6 +96,7 @@ public class ProfileFragment extends BaseFragment {
                 break;
             }
             case R.id.rl_recode: {
+                VideoListActivity_.intent(this).start();
                 break;
             }
             default:break;

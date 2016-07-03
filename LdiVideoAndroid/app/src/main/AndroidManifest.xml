@@ -35,6 +35,8 @@
         <activity android:name=".Activitys.ChangePasswordActivity_"/>
         <activity android:name=".Activitys.ChangeProfileActivity_">
         </activity>
+        <activity android:name=".Activitys.VideoListActivity_">
+        </activity>
     </application>
 
 </manifest>

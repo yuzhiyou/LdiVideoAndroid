@@ -16,7 +16,7 @@
         android:layout_marginBottom="100dp"
         android:contentDescription="@string/app_name"
         android:adjustViewBounds="true"
-        android:src="@mipmap/logo1" />
+        android:src="@mipmap/logo" />
 
     <LinearLayout
         android:layout_gravity="bottom"
