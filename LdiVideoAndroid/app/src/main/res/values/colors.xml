@@ -29,5 +29,5 @@
 
     <color name="black">#000000</color>
     <color name="banner_info_background">#ce050505</color>
-
+    <color name="blue">#0000ff</color>
 </resources>

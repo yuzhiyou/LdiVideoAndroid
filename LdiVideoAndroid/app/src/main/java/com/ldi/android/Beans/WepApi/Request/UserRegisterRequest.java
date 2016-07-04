@@ -8,6 +8,7 @@ public class UserRegisterRequest {
     private String u_phone;
     private String u_password;
     private String verify_code;
+    private String u_invitation_code;
 
     public String getU_phone() {
         return u_phone;
@@ -31,5 +32,13 @@ public class UserRegisterRequest {
 
     public void setVerify_code(String verify_code) {
         this.verify_code = verify_code;
+    }
+
+    public String getU_invitation_code() {
+        return u_invitation_code;
+    }
+
+    public void setU_invitation_code(String u_invitation_code) {
+        this.u_invitation_code = u_invitation_code;
     }
 }

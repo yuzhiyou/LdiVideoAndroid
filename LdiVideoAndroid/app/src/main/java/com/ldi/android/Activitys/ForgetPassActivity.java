@@ -9,6 +9,7 @@ import android.widget.EditText;
 import com.ldi.android.Activitys.Base.BaseActivity;
 import com.ldi.android.Beans.WepApi.Request.CheckCodeRequest;
 import com.ldi.android.Beans.WepApi.Response.StatusResponse;
+import com.ldi.android.Constants;
 import com.ldi.android.Net.MyRestClient;
 import com.ldi.android.R;
 import com.ldi.android.Utils.ValidateUtil;
@@ -91,7 +92,7 @@ public class ForgetPassActivity extends BaseActivity {
         action.setU_phone(mobile);
         try {
             StatusResponse response = restClient.getCheckCode(action);
-            if (response.getStatus() == 0) {
+            if (response.getStatus().equalsIgnoreCase(Constants.STATUS_OK)) {
                 sendCheckCodeResult("发送验证码成功!");
             }else{
                 sendCheckCodeResult("发送验证码失败!");

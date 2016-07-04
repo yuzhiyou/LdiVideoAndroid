@@ -137,7 +137,7 @@
                             app:riv_corner_radius="3dip"
                             app:riv_border_width="0dip"
                             app:riv_mutate_background="true"
-                            app:riv_tile_mode="repeat"
+                            app:riv_tile_mode="clamp"
                             app:riv_oval="false"
                             android:layout_above="@+id/tv_demo_video1_title1"/>
 
@@ -176,7 +176,7 @@
                             app:riv_corner_radius="3dip"
                             app:riv_border_width="0dip"
                             app:riv_mutate_background="true"
-                            app:riv_tile_mode="repeat"
+                            app:riv_tile_mode="clamp"
                             app:riv_oval="false"
                             android:layout_above="@+id/tv_demo_video2_title1"/>
 
@@ -255,7 +255,7 @@
                             app:riv_corner_radius="3dip"
                             app:riv_border_width="0dip"
                             app:riv_mutate_background="true"
-                            app:riv_tile_mode="repeat"
+                            app:riv_tile_mode="clamp"
                             app:riv_oval="false"
                             android:layout_above="@+id/tv_recommend_video1_title1"/>
 
@@ -277,7 +277,7 @@
                             app:riv_corner_radius="3dip"
                             app:riv_border_width="0dip"
                             app:riv_mutate_background="true"
-                            app:riv_tile_mode="repeat"
+                            app:riv_tile_mode="clamp"
                             app:riv_oval="false"/>
                         <TextView
                             android:id="@+id/tv_recommend_video2_title1"

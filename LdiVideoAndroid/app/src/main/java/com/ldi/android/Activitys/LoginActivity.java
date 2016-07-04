@@ -15,6 +15,7 @@ import com.ldi.android.App_;
 import com.ldi.android.Beans.User;
 import com.ldi.android.Beans.WepApi.Request.UserLoginRequest;
 import com.ldi.android.Beans.WepApi.Response.UserLoginResponse;
+import com.ldi.android.Constants;
 import com.ldi.android.EventBus.MessageEvent;
 import com.ldi.android.Net.MyRestClient;
 import com.ldi.android.R;
@@ -144,10 +145,10 @@ public class LoginActivity extends BaseActivity {
         try {
             UserLoginResponse response = restClient.userLogin(action);
             //status为0时请求成功
-            if (response.getStatus() == 0) {
+            if (response.getStatus().equalsIgnoreCase(Constants.STATUS_OK)) {
                 userLoginResult(response.getData(),"登录成功!");
             }else{
-                userLoginResult(null,"登录失败!");
+                userLoginResult(null,response.getMessage());
             }
         }catch (Exception e){
             userLoginResult(null,e.getLocalizedMessage());

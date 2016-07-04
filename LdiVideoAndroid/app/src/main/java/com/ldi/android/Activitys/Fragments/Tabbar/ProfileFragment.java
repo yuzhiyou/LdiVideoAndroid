@@ -4,10 +4,13 @@ package com.ldi.android.Activitys.Fragments.Tabbar;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.ldi.android.Activitys.ChangePasswordActivity_;
 import com.ldi.android.Activitys.ChangeProfileActivity_;
 import com.ldi.android.Activitys.Fragments.BaseFragment;
+import com.ldi.android.Activitys.MyVideoListActivity_;
 import com.ldi.android.Activitys.UserEnterActivity_;
 import com.ldi.android.Activitys.VideoListActivity_;
 import com.ldi.android.Activitys.WebViewClientActivity_;
@@ -27,6 +30,15 @@ import org.androidannotations.annotations.ViewById;
 public class ProfileFragment extends BaseFragment {
     @ViewById(R.id.btn_logout)
     Button btn_logout;
+
+    @ViewById(R.id.tv_nickname)
+    TextView tv_nickname;
+
+    @ViewById(R.id.tv_phone)
+    TextView tv_phone;
+
+    @ViewById(R.id.iv_photo)
+    ImageView iv_photo;
 
 
     public ProfileFragment() {
@@ -57,6 +69,8 @@ public class ProfileFragment extends BaseFragment {
     void afterViews() {
         //title
         setTitle(R.id.navigation_bar_title_tv, R.string.tabar_profile);
+        tv_nickname.setText(App_.getInstance().mUser.getU_name());
+        tv_phone.setText(App_.getInstance().mUser.getU_phone());
     }
 
     @Click({R.id.btn_logout, R.id.rl_appeal, R.id.iv_photo, R.id.rl_change_pass, R.id.rl_gift, R.id.rl_identity_verification, R.id.rl_my_video, R.id.rl_change_info, R.id.rl_recode})
@@ -88,7 +102,7 @@ public class ProfileFragment extends BaseFragment {
                 break;
             }
             case R.id.rl_my_video: {
-                VideoListActivity_.intent(this).start();
+                MyVideoListActivity_.intent(this).start();
                 break;
             }
             case R.id.rl_change_info: {

@@ -24,6 +24,7 @@ public class User implements Serializable{
     private String u_card_front;    //身份证正面
     private String u_card_back;     //身份证背面
     private boolean u_verify;       //是否已认证
+    private String u_phone;  //手机号
     private String u_verify_date;  //认证日期
 
     public int getU_id() {
@@ -90,6 +91,14 @@ public class User implements Serializable{
         this.u_verify_date = u_verify_date;
     }
 
+    public String getU_phone() {
+        return u_phone;
+    }
+
+    public void setU_phone(String u_phone) {
+        this.u_phone = u_phone;
+    }
+
     /**
      * 保存用户信息
      * **/
@@ -118,5 +127,20 @@ public class User implements Serializable{
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.apply();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "u_id=" + u_id +
+                ", u_name='" + u_name + '\'' +
+                ", u_password='" + u_password + '\'' +
+                ", u_card_id='" + u_card_id + '\'' +
+                ", u_card_front='" + u_card_front + '\'' +
+                ", u_card_back='" + u_card_back + '\'' +
+                ", u_verify=" + u_verify +
+                ", u_phone='" + u_phone + '\'' +
+                ", u_verify_date='" + u_verify_date + '\'' +
+                '}';
     }
 }

@@ -1,13 +1,6 @@
 package com.ldi.android.Activitys;
 
-import android.content.Intent;
 import android.os.CountDownTimer;
-import android.support.v4.app.ActivityCompat;
-import android.text.SpannableStringBuilder;
-import android.text.Spanned;
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.text.style.URLSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -87,8 +80,8 @@ public class RegisterActivity extends BaseActivity {
             }
             case R.id.registerConditionTv: {    //注册条款
                 WebViewClientActivity_.intent(this)
-                        .extra("title",getString(R.string.register_condition_title))
-                        .extra("url",Constants.kRegisterConditionUrl)
+                        .title(getString(R.string.register_condition_title))
+                        .url(Constants.kRegisterConditionUrl)
                         .start();
                 break;
             }
@@ -104,11 +97,13 @@ public class RegisterActivity extends BaseActivity {
             case R.id.registerNextStepBtn: {    //下一步
                 String mobile = registerMobileET.getText().toString();
                 String check_code = registerCheckCodeET.getText().toString();
+                String invitation_code = registerRecommendCodeET.getText().toString();
 
                 RegisterPassActivity_
                         .intent(this)
-                        .extra("mobile",mobile)
-                        .extra("chekcode",check_code)
+                        .mobile(mobile)
+                        .chekcode(check_code)
+                        .invitation_code(invitation_code)
                         .start();
                 break;
             }
@@ -142,7 +137,7 @@ public class RegisterActivity extends BaseActivity {
         action.setU_phone(mobile);
         try {
             StatusResponse response = restClient.getCheckCode(action);
-            if (response.getStatus() == 0) {
+            if (response.getStatus().equalsIgnoreCase(Constants.STATUS_OK)) {
                 sendCheckCodeResult("发送验证码成功!");
             }else{
                 sendCheckCodeResult("发送验证码失败!");
