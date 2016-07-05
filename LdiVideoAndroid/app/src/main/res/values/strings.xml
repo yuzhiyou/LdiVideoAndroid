@@ -46,5 +46,8 @@
     <string name="all_demo">全部示例</string>
     <string name="delete">删除</string>
     <string name="appeal_text">申诉</string>
+    <string name="text_photo_pick">从相册选择</string>
+    <string name="text_photo_camera">拍照</string>
+    <string name="text_photo_cancel">取消</string>
 
 </resources>

@@ -9,4 +9,5 @@ public class Constants {
     //注册条款
     public static final String kRegisterConditionUrl = "http://www.baidu.com";
     public static final String STATUS_OK = "0";
+    public static final String USER_PHOTO_SAVE_PATH = "/LDIPhoto";
 }
