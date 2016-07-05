@@ -38,6 +38,14 @@
         <activity android:name=".Activitys.ChangeProfileActivity_"/>
         <activity android:name=".Activitys.VideoListActivity_"/>
         <activity android:name=".Activitys.MyVideoListActivity_"/>
+        <activity
+            android:name="com.nononsenseapps.filepicker.FilePickerActivity"
+            android:theme="@style/FilePickerTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.GET_CONTENT" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

@@ -137,7 +137,7 @@ public class LoginActivity extends BaseActivity {
      * 用户登录
      * */
     @Background
-    void userLoginInBackground(String mobile,String password){
+    void userLoginInBackground(String mobile,String password) {
         //参数设置
         UserLoginRequest action = new UserLoginRequest();
         action.setU_phone(mobile);
@@ -146,12 +146,12 @@ public class LoginActivity extends BaseActivity {
             UserLoginResponse response = restClient.userLogin(action);
             //status为0时请求成功
             if (response.getStatus().equalsIgnoreCase(Constants.STATUS_OK)) {
-                userLoginResult(response.getData(),"登录成功!");
-            }else{
-                userLoginResult(null,response.getMessage());
+                userLoginResult(response.getData(), "登录成功!");
+            } else {
+                userLoginResult(null, response.getMessage());
             }
-        }catch (Exception e){
-            userLoginResult(null,e.getLocalizedMessage());
+        } catch (Exception e) {
+            userLoginResult(null, e.getLocalizedMessage());
         }
     }
     @UiThread

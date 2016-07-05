@@ -222,10 +222,6 @@ public class ProfileFragment extends BaseFragment {
             cursor.close();
             // 选择的图片的Uri
             Uri uri = Uri.fromFile(new File(picturePath));
-//            File newFile = new File(getFILE_PATH_TEMP()+"/PickCorpTemp.png");// 不剪裁原图，保留原图.
-//            if(copyfile(new File(uri.getPath()),newFile,true)){          // 复制图片
-//                uri = Uri.fromFile(newFile); //复制成功后剪裁复制的图.
-//            }
             startPhotoZoom(uri, 480, mCurrCorpImageId);
         }
     }

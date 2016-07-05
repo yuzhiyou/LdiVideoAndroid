@@ -49,5 +49,9 @@
     <string name="text_photo_pick">从相册选择</string>
     <string name="text_photo_camera">拍照</string>
     <string name="text_photo_cancel">取消</string>
+    <string name="upload_progress">上传进度:%s</string>
+    <string name="uploading">Uploading at [[UPLOAD_RATE]] ([[PROGRESS]])</string>
+    <string name="upload_success">上传成功:[[ELAPSED_TIME]]</string>
+    <string name="upload_error">上传失败</string>
 
 </resources>
