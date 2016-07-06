@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:clipToPadding="true"
     android:fitsSystemWindows="true"
-    android:layout_height="wrap_content">
+    android:background="@color/colorBackground"
+    tools:context="com.ldi.android.Activitys.ChangeProfileActivity">
+
     <include android:id="@+id/actionbar" layout="@layout/navigation_bar_back"/>
 
     <LinearLayout

@@ -23,7 +23,7 @@
         >
 
         <ImageView
-            android:id="@+id/iv_photo"
+            android:id="@+id/iv_icon"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_centerVertical="true"

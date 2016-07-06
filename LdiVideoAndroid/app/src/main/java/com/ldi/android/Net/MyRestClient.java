@@ -29,7 +29,7 @@ public interface MyRestClient extends RestClientHeaders {
     /**
      发送验证码
      */
-    @Post("/v1/user/sendSms")
+    @Post("/v1/user/sendLinkCode")
     StatusResponse getCheckCode(@Body CheckCodeRequest action);
     /**
      用户注册

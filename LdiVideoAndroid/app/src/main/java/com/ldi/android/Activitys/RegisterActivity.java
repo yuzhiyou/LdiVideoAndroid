@@ -91,7 +91,7 @@ public class RegisterActivity extends BaseActivity {
                 mc.start();
                 loginSendCheckCodeBtn.setEnabled(false);
                 //请求验证码
-                sendCheckCodeInBackground(registerMobileET.getText().toString());
+                sendCheckCodeInBackground(registerMobileET.getText().toString(),registerRecommendCodeET.getText().toString());
                 break;
             }
             case R.id.registerNextStepBtn: {    //下一步
@@ -132,15 +132,16 @@ public class RegisterActivity extends BaseActivity {
      * 获取验证码
      * */
     @Background
-    void sendCheckCodeInBackground(String mobile){
+    void sendCheckCodeInBackground(String mobile,String invitation_code){
         CheckCodeRequest action = new CheckCodeRequest();
         action.setU_phone(mobile);
+        action.setU_invitation_code(invitation_code);
         try {
             StatusResponse response = restClient.getCheckCode(action);
             if (response.getStatus().equalsIgnoreCase(Constants.STATUS_OK)) {
                 sendCheckCodeResult("发送验证码成功!");
             }else{
-                sendCheckCodeResult("发送验证码失败!");
+                sendCheckCodeResult(response.getMessage());
             }
         }catch (Exception e){
             sendCheckCodeResult("发送验证码失败!");
