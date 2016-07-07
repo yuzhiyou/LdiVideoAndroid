@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.ldi.android.Activitys.Fragments.BaseFragment;
 import com.ldi.android.Activitys.VideoListActivity_;
+import com.ldi.android.Activitys.VideoPayActivity_;
 import com.ldi.android.R;
 
 import org.androidannotations.annotations.AfterViews;
@@ -51,7 +52,7 @@ public class HomeFragment extends BaseFragment {
     void click(View v){
         switch (v.getId()){
             case R.id.iv_demo_video1:{
-                goPlay("");
+                VideoPayActivity_.intent(this).start();
                 break;
             }
             case R.id.iv_demo_video2:{

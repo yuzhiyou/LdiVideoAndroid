@@ -8,8 +8,8 @@
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
 
     <application
         android:name=".App_"
@@ -33,19 +33,13 @@
         <activity android:name=".Activitys.ForgetPassActivity_"/>
         <activity android:name=".Activitys.WebViewClientActivity_"/>
         <activity android:name=".Activitys.UserEnterActivity_"/>
-        <activity android:name=".Activitys.MainActivity_"/>
+        <activity android:name=".Activitys.MainActivity_" android:screenOrientation="portrait"/>
         <activity android:name=".Activitys.ChangePasswordActivity_"/>
         <activity android:name=".Activitys.ChangeProfileActivity_"/>
         <activity android:name=".Activitys.VideoListActivity_"/>
         <activity android:name=".Activitys.MyVideoListActivity_"/>
-        <activity
-            android:name="com.nononsenseapps.filepicker.FilePickerActivity"
-            android:theme="@style/FilePickerTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.GET_CONTENT" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".Activitys.VideoPayActivity_"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

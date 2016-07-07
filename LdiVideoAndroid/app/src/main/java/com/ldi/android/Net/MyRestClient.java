@@ -17,7 +17,6 @@ import org.androidannotations.rest.spring.api.RestClientHeaders;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
@@ -46,7 +45,7 @@ public interface MyRestClient extends RestClientHeaders {
      */
     @Post("/v1/user/edit")
     @RequiresHeader("Content-Type")
-    StatusResponse userEdit(@Body LinkedMultiValueMap<String,Object> data);
+    UserLoginResponse userEdit(@Body MultiValueMap<String,Object> data);
     /**
      获取用户
      */

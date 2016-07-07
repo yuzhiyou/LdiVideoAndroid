@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_video_pay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/colorBackground"
+    tools:context="com.ldi.android.Activitys.VideoPayActivity">
+
+    <include layout="@layout/navigation_bar_back"/>
+
+    <ImageView
+        android:src="@mipmap/video_preview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:id="@+id/iv_video_preview"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        >
+        <RelativeLayout
+            android:id="@+id/rl_pay_watch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:background="@drawable/red_btn_bg_selector"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tv_pay_watch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_pay_watch"
+                android:layout_centerHorizontal="true"
+                android:textColor="@color/white"
+                />
+            <TextView
+                android:layout_below="@+id/tv_pay_watch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:id="@+id/tv_flag"
+                android:layout_toLeftOf="@+id/tv_value"
+                android:layout_alignBaseline="@+id/tv_value"
+                android:text="￥"
+                />
+            <TextView
+                android:id="@+id/tv_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textSize="25sp"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/tv_pay_watch"
+                android:text="20"
+                />
+        </RelativeLayout>
+
+        <TextView
+            android:text="等你等了那么久！曼联老将保罗·斯科尔斯集锦,等你来看"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_info"
+            android:paddingLeft="10dp"
+            android:layout_below="@+id/tv_video_title"
+            android:layout_toLeftOf="@+id/rl_pay_watch"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignBottom="@+id/rl_pay_watch"
+            />
+
+        <TextView
+            android:text="保罗·斯科尔斯的精彩瞬间"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_video_title"
+            android:padding="10dp"
+            android:maxLines="1"
+            android:textSize="18sp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toLeftOf="@+id/rl_pay_watch"
+            android:layout_toStartOf="@+id/rl_pay_watch"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:text="@string/pay_type_tips"
+        android:layout_margin="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:id="@+id/textView7"/>
+
+    <LinearLayout
+        android:id="@+id/ll_ali_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+        <RadioButton
+            android:id="@+id/radio_ali_pay"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:checked="true"
+            android:background="@drawable/radio_button"
+            android:button="@null"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/ic_ali_pay"
+            android:id="@+id/iv_ali_pay"/>
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/ali_pay"/>
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="40dp"
+            android:background="@color/Grey_300"/>
+    </FrameLayout>
+    <LinearLayout
+        android:id="@+id/ll_wechat_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="20dp"
+        android:paddingLeft="10dp"
+        android:gravity="center_vertical"
+        android:background="@color/white">
+        <RadioButton
+            android:id="@+id/radio_wetchat_pay"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:background="@drawable/radio_button"
+            android:button="@null"
+            />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/ic_wechat_pay"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/wechat_pay"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_ok"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/ok"
+        android:textColor="@color/white"
+        android:background="@drawable/red_btn_bg_selector"/>
+
+
+</LinearLayout>

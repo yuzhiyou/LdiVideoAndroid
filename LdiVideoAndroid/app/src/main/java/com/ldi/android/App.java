@@ -8,14 +8,7 @@ import android.net.NetworkInfo;
 
 import com.ldi.android.Beans.User;
 
-import net.gotev.uploadservice.UploadService;
-import net.gotev.uploadservice.okhttp.OkHttpStack;
-
 import org.androidannotations.annotations.EApplication;
-
-import java.util.concurrent.TimeUnit;
-
-import okhttp3.OkHttpClient;
 
 /**
  * Created by Forrest on 16/4/26.
@@ -33,21 +26,21 @@ public class App extends Application {
         isNetworkConnected = getNetWorkStatus();
         //获取用户
         mUser = User.getUser(this);
-        UploadService.NAMESPACE = BuildConfig.APPLICATION_ID;
-
-        // Set the HTTP stack to use. The default is HurlStack which uses HttpURLConnection.
-        // To use OkHttp for example, you have to add the required dependency in your gradle file
-        // and then you can simply un-comment the following line. Read the wiki for more info.
-        OkHttpClient client = new OkHttpClient.Builder()
-                .followRedirects(true)
-                .followSslRedirects(true)
-                .retryOnConnectionFailure(true)
-                .connectTimeout(15, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS)
-                .cache(null)
-                .build();
-        UploadService.HTTP_STACK = new OkHttpStack(client);
+        //UploadService.NAMESPACE = BuildConfig.APPLICATION_ID;
+        //
+        //// Set the HTTP stack to use. The default is HurlStack which uses HttpURLConnection.
+        //// To use OkHttp for example, you have to add the required dependency in your gradle file
+        //// and then you can simply un-comment the following line. Read the wiki for more info.
+        //OkHttpClient client = new OkHttpClient.Builder()
+        //        .followRedirects(true)
+        //        .followSslRedirects(true)
+        //        .retryOnConnectionFailure(true)
+        //        .connectTimeout(15, TimeUnit.SECONDS)
+        //        .writeTimeout(30, TimeUnit.SECONDS)
+        //        .readTimeout(30, TimeUnit.SECONDS)
+        //        .cache(null)
+        //        .build();
+        //UploadService.HTTP_STACK = new OkHttpStack(client);
     }
     /**
      * 获取默认
