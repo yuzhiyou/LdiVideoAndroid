@@ -25,7 +25,7 @@
 
 
                 <com.ldi.android.flowwidget.ViewFlow
-                    android:id="@+id/viewflow"
+                    android:id="@+id/banner_flow"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="@mipmap/banner_default" >

@@ -3,6 +3,8 @@
     android:id="@+id/app_video_box"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="#000"
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -177,48 +179,46 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:padding="8dp"
             android:visibility="visible">
+
+            <SeekBar
+                android:id="@+id/app_video_seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginBottom="5dp"
+                />
 
             <ImageView
                 android:id="@+id/app_video_play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/app_video_seekBar"
                 android:layout_centerVertical="true"
                 android:padding="8dp"
                 android:src="@drawable/ic_play_arrow_white_24dp"/>
 
-            <TextView
-                android:text="06:21"
-                android:id="@+id/app_video_currentTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="5dp"
-                android:layout_toRightOf="@+id/app_video_play"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                />
 
-            <SeekBar
-                android:id="@+id/app_video_seekBar"
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/tv_time_line"
+                android:text="/"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="3dp"
-                android:layout_marginRight="3dp"
-                android:layout_toLeftOf="@+id/app_video_endTime"
+                android:layout_below="@+id/app_video_seekBar"
                 android:layout_toRightOf="@+id/app_video_currentTime"
+                android:textColor="@color/Grey_500"
                 />
 
             <TextView
                 android:id="@+id/app_video_endTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/app_video_fullscreen"
+                android:layout_below="@+id/app_video_seekBar"
+                android:layout_toRightOf="@+id/tv_time_line"
                 android:text="10:10"
-                android:textColor="@android:color/white"
+                android:layout_centerVertical="true"
+                android:textColor="@color/Grey_500"
                 android:textSize="12sp"
                 />
             <ImageView
@@ -229,6 +229,17 @@
                 android:src="@drawable/ic_fullscreen_white_24dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="06:21"
+                android:id="@+id/app_video_currentTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="12sp"
+                android:layout_below="@+id/app_video_seekBar"
+                android:layout_toRightOf="@+id/app_video_play"
+                android:layout_toEndOf="@+id/app_video_play"/>
 
         </RelativeLayout>
 
@@ -253,7 +264,7 @@
             android:layout_height="wrap_content"
             android:ellipsize="marquee"
             android:padding="8dp"
-            android:singleLine="true"
+            android:maxLines="1"
             android:textColor="@android:color/white"
             android:textSize="12sp"
             android:visibility="visible"

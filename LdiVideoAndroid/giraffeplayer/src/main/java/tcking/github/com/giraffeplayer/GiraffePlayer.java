@@ -9,9 +9,6 @@ import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -203,6 +200,7 @@ public class GiraffePlayer {
     private void showBottomControl(boolean show) {
         $.id(R.id.app_video_play).visibility(show ? View.VISIBLE : View.GONE);
         $.id(R.id.app_video_currentTime).visibility(show ? View.VISIBLE : View.GONE);
+        $.id(R.id.tv_time_line).visibility(show ? View.VISIBLE : View.GONE);
         $.id(R.id.app_video_endTime).visibility(show ? View.VISIBLE : View.GONE);
         $.id(R.id.app_video_seekBar).visibility(show ? View.VISIBLE : View.GONE);
     }
