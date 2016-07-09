@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.ldi.android.Activitys.Fragments.BaseFragment;
+import com.ldi.android.Activitys.SearchListActivity_;
 import com.ldi.android.Activitys.VideoListActivity_;
 import com.ldi.android.Activitys.VideoPayActivity_;
 import com.ldi.android.Adapter.BannerAdapter;
@@ -91,7 +92,7 @@ public class HomeFragment extends BaseFragment {
 
     }
 
-    @Click({R.id.iv_demo_video1,R.id.iv_demo_video2,R.id.iv_recommend_video1,R.id.iv_recommend_video2,R.id.tv_video_more,R.id.tv_recommend_more})
+    @Click({R.id.iv_demo_video1,R.id.iv_demo_video2,R.id.iv_recommend_video1,R.id.iv_recommend_video2,R.id.tv_video_more,R.id.tv_recommend_more,R.id.ll_search})
     void click(View v){
         switch (v.getId()){
             case R.id.iv_demo_video1:{
@@ -99,17 +100,21 @@ public class HomeFragment extends BaseFragment {
                 break;
             }
             case R.id.iv_demo_video2:{
-                goPlay("");
+                VideoPayActivity_.intent(this).start();
                 break;
             }
             case R.id.iv_recommend_video1:{
-                goPlay("");
+                VideoPayActivity_.intent(this).start();
                 break;
             }
             case R.id.iv_recommend_video2:{
-                goPlay("");
+                VideoPayActivity_.intent(this).start();
                 break;
             }
+
+            case R.id.ll_search:
+                SearchListActivity_.intent(this).start();
+                break;
             case R.id.tv_recommend_more:
             case R.id.tv_video_more:
                 VideoListActivity_.intent(this).start();

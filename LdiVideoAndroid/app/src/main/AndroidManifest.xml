@@ -33,13 +33,18 @@
         <activity android:name=".Activitys.ForgetPassActivity_"/>
         <activity android:name=".Activitys.WebViewClientActivity_"/>
         <activity android:name=".Activitys.UserEnterActivity_"/>
-        <activity android:name=".Activitys.MainActivity_" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activitys.MainActivity_"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Activitys.ChangePasswordActivity_"/>
         <activity android:name=".Activitys.ChangeProfileActivity_"/>
         <activity android:name=".Activitys.VideoListActivity_"/>
         <activity android:name=".Activitys.MyVideoListActivity_"/>
-        <activity android:name=".Activitys.VideoPayActivity_"
+        <activity
+            android:name=".Activitys.VideoPayActivity_"
             android:screenOrientation="portrait"/>
+        <activity android:name=".Activitys.SearchListActivity_">
+        </activity>
     </application>
 
 </manifest>

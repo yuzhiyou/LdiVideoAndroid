@@ -1,14 +1,18 @@
 package com.ldi.android.Activitys;
 
+import android.Manifest;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.widget.FrameLayout;
 import android.widget.RadioGroup;
 
+import com.anthonycr.grant.PermissionsManager;
+import com.anthonycr.grant.PermissionsResultAction;
 import com.ldi.android.Activitys.Base.BaseActivity;
 import com.ldi.android.Activitys.Fragments.Tabbar.HomeFragment;
 import com.ldi.android.Activitys.Fragments.Tabbar.ProfileFragment;
@@ -53,10 +57,24 @@ public class MainActivity extends BaseActivity {
                         index = 0;
                         break;
                     case R.id.mainCardTabBarItem:
-                        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
-                        // MediaStore.EXTRA_VIDEO_QUALITY：这个值的范围是0~1，0的时候质量最差且文件最小，1的时候质量最高且文件最大。
-                        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
-                        startActivityForResult(intent, REQUEST_CODE);
+                        PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(MainActivity.this,
+                                new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionsResultAction() {
+
+                                    @Override
+                                    public void onGranted() {
+                                        Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                                        // MediaStore.EXTRA_VIDEO_QUALITY：这个值的范围是0~1，0的时候质量最差且文件最小，1的时候质量最高且文件最大。
+                                        intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 0.5);
+                                        startActivityForResult(intent, REQUEST_CODE);
+                                    }
+
+                                    @Override
+                                    public void onDenied(String permission) {
+                                        showToast("请您允许应用访问摄像头和存储设备");
+                                    }
+                                }
+                        );
+
                         index = 1;
                         break;
                     default:
@@ -133,4 +151,12 @@ public class MainActivity extends BaseActivity {
             // 视频捕捉失败,建议用户
         }
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        PermissionsManager.getInstance().notifyPermissionsChange(permissions, grantResults);
+    }
+
 }
