@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context="com.ldi.android.Activitys.CertificationActivity">
+
+    <include layout="@layout/navigation_bar_back"/>
+
+    <EditText
+        android:id="@+id/et_name"
+        style="@style/text_darkgray_14"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:drawablePadding="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="30dp"
+        android:maxLines="1"
+        android:maxLength="20"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_edittext_height"
+        android:hint="@string/name_hint"
+        android:textColorHint="@color/gray_btn_bg_color"
+        android:background="@drawable/input_edittext_bg"/>
+
+    <EditText
+        android:id="@+id/et_id"
+        style="@style/text_darkgray_14"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:drawablePadding="8dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="30dp"
+        android:maxLength="18"
+        android:digits="1234567890xX"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/login_edittext_height"
+        android:hint="@string/id_number_hint"
+        android:textColorHint="@color/gray_btn_bg_color"
+        android:background="@drawable/input_edittext_bg"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="身份证正面照上传"
+        />
+    <ImageView
+        android:id="@+id/iv_id_front"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:visibility="gone"/>
+    <LinearLayout
+        android:id="@+id/ll_front"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center"
+        android:background="@color/Grey_500">
+
+
+        <ImageView
+            android:id="@+id/iv_front_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_camera"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="请在此处上传身份证正面照片"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:text="身份证反面照上传"
+        />
+
+    <ImageView
+        android:id="@+id/iv_id_back"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:visibility="gone"
+        />
+    <LinearLayout
+        android:id="@+id/ll_back"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:background="@color/Grey_500">
+        <ImageView
+            android:id="@+id/iv_back_select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_camera"
+            android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="请在此处上传身份证反面照片"
+            android:layout_gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_submit"
+        style="@style/text_white_16"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_height="@dimen/login_button_height"
+        android:text="@string/submit"
+        android:enabled="false"
+        android:background="@drawable/red_btn_bg_selector"
+        />
+
+
+</LinearLayout>

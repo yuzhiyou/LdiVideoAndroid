@@ -45,6 +45,8 @@
             android:screenOrientation="portrait"/>
         <activity android:name=".Activitys.SearchListActivity_">
         </activity>
+        <activity android:name=".Activitys.CertificationActivity_">
+        </activity>
     </application>
 
 </manifest>

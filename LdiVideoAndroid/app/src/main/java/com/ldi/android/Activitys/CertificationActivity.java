@@ -1,6 +1,6 @@
-package com.ldi.android.Activitys.Fragments.Tabbar;
+package com.ldi.android.Activitys;
 
-
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
@@ -9,53 +9,34 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.ldi.android.Activitys.CertificationActivity_;
-import com.ldi.android.Activitys.ChangePasswordActivity_;
-import com.ldi.android.Activitys.ChangeProfileActivity_;
-import com.ldi.android.Activitys.Fragments.BaseFragment;
-import com.ldi.android.Activitys.MyVideoListActivity_;
-import com.ldi.android.Activitys.UserEnterActivity_;
-import com.ldi.android.Activitys.VideoListActivity_;
-import com.ldi.android.Activitys.WebViewClientActivity_;
-import com.ldi.android.App_;
-import com.ldi.android.Beans.User;
+import com.anthonycr.grant.PermissionsManager;
+import com.anthonycr.grant.PermissionsResultAction;
+import com.ldi.android.Activitys.Base.BaseActivity;
 import com.ldi.android.Constants;
 import com.ldi.android.R;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
-import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.OnActivityResult;
+import org.androidannotations.annotations.TextChange;
 import org.androidannotations.annotations.ViewById;
 
 import java.io.File;
 
-import static android.app.Activity.RESULT_OK;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-@EFragment(R.layout.fragment_profile)
-public class ProfileFragment extends BaseFragment {
-    @ViewById(R.id.btn_logout)
-    Button btn_logout;
-
-    @ViewById(R.id.tv_nickname)
-    TextView tv_nickname;
-
-    @ViewById(R.id.tv_phone)
-    TextView tv_phone;
-
-    @ViewById(R.id.iv_photo)
-    ImageView iv_photo;
-
+@EActivity(R.layout.activity_certification)
+public class CertificationActivity extends BaseActivity {
     private AlertDialog mTakeDialog;
     private String mPhotoPath;// Photo from Camera.
     private String mPhotoPathCrop; //Photo from crop.
@@ -63,99 +44,86 @@ public class ProfileFragment extends BaseFragment {
     public static final int REQUEST_TAKE_PHOTO = 1002;
     public static final int REQUEST_CROP = 1003;
     private String FILE_PATH_TEMP = "";
+    private String ID_front_path = "";
+    private String ID_back_path = "";
 
+    @ViewById(R.id.et_name)
+    EditText et_name;
 
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
+    @ViewById(R.id.et_id)
+    EditText et_id;
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @return A new instance of fragment ProductFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ProfileFragment newInstance() {
-        ProfileFragment fragment = new ProfileFragment_();
-        return fragment;
-    }
+    @ViewById(R.id.btn_submit)
+    Button btn_submit;
 
-    @Override
-    public void setMenuVisibility(boolean menuVisible) {
-        super.setMenuVisibility(menuVisible);
-        if (this.getView() != null) {
-            this.getView().setVisibility(menuVisible ? View.VISIBLE : View.GONE);
-        }
-    }
+    @ViewById(R.id.iv_front_select)
+    ImageView iv_front_select;
+
+    @ViewById(R.id.iv_back_select)
+    ImageView iv_back_select;
+
+    @ViewById(R.id.iv_id_front)
+    ImageView iv_id_front;
+
+    @ViewById(R.id.iv_id_back)
+    ImageView iv_id_back;
+
+    @ViewById(R.id.ll_front)
+    LinearLayout ll_front;
+
+    @ViewById(R.id.ll_back)
+    LinearLayout ll_back;
 
     @AfterViews
-    void afterViews() {
-        //title
-        setTitle(R.id.navigation_bar_title_tv, R.string.tabar_profile);
-        tv_nickname.setText(App_.getInstance().mUser.getU_name());
-        tv_phone.setText(App_.getInstance().mUser.getU_phone());
-        FILE_PATH_TEMP = Environment.getExternalStorageDirectory().toString() + Constants.USER_PHOTO_SAVE_PATH;
+    void afterview() {
+        setTitle(R.id.navigation_bar_back_tv, R.string.certification);
+        PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(CertificationActivity.this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionsResultAction() {
+
+                    @Override
+                    public void onGranted() {
+                        FILE_PATH_TEMP = Environment.getExternalStorageDirectory().toString() + Constants.USER_PHOTO_SAVE_PATH;
+
+                    }
+
+                    @Override
+                    public void onDenied(String permission) {
+                        showToast("请您允许应用访问存储设备");
+                    }
+                }
+        );
     }
 
-    @Click({R.id.btn_logout, R.id.rl_appeal, R.id.iv_photo, R.id.rl_change_pass, R.id.rl_gift, R.id.rl_identity_verification, R.id.rl_my_video, R.id.rl_change_info, R.id.rl_recode})
+    @Click({R.id.navigation_bar_back_ib, R.id.iv_front_select, R.id.iv_back_select, R.id.iv_id_front, R.id.iv_id_back})
     void click(View v) {
         switch (v.getId()) {
-            case R.id.btn_logout: {
-                App_.getInstance().mUser = null;
-                User.clearUser(getContext());
-                //注册登录页
-                UserEnterActivity_.intent(this).start();
-                getActivity().finish();
+            case R.id.navigation_bar_back_ib:
+                finish();
                 break;
-            }
-            case R.id.rl_appeal: {
+            case R.id.iv_front_select:
+            case R.id.iv_id_front:
+                showPhotoWayDialog(iv_front_select);
                 break;
-            }
-            case R.id.iv_photo: {
-                showPhotoWayDialog();
+            case R.id.iv_back_select:
+            case R.id.iv_id_back:
+                showPhotoWayDialog(iv_back_select);
                 break;
-            }
-            case R.id.rl_change_pass: {
-                ChangePasswordActivity_.intent(this).start();
-                break;
-            }
-            case R.id.rl_gift: {
-                WebViewClientActivity_.intent(this).url("http://www.baidu.com").start();
-                break;
-            }
-            case R.id.rl_identity_verification: {
-                CertificationActivity_.intent(this).start();
-                break;
-            }
-            case R.id.rl_my_video: {
-                MyVideoListActivity_.intent(this).start();
-                break;
-            }
-            case R.id.rl_change_info: {
-                ChangeProfileActivity_.intent(this).start();
-                break;
-            }
-            case R.id.rl_recode: {
-                VideoListActivity_.intent(this).start();
-                break;
-            }
             default:
                 break;
         }
     }
 
-    private void showPhotoWayDialog() {
-        mTakeDialog = new AlertDialog.Builder(getContext()).create();
+    private void showPhotoWayDialog(View v) {
+        mTakeDialog = new AlertDialog.Builder(this).create();
         mTakeDialog.show();
         Window window = mTakeDialog.getWindow();
         window.setContentView(R.layout.take_photo_dialog);
         TextView cameraTv = (TextView) window.findViewById(R.id.tv_content1);
         cameraTv.setText(getResources().getString(R.string.text_photo_camera));
-        cameraTv.setTag(iv_photo.getId() + "");
+        cameraTv.setTag(v.getId() + "");
         TextView pickTv = (TextView) window.findViewById(R.id.tv_content2);
         pickTv.setText(getResources().getString(R.string.text_photo_pick));
-        pickTv.setTag(iv_photo.getId() + "");
+        pickTv.setTag(v.getId() + "");
         TextView cancelTv = (TextView) window.findViewById(R.id.tv_content3);
         cancelTv.setText(getResources().getString(R.string.text_photo_cancel));
 
@@ -166,11 +134,37 @@ public class ProfileFragment extends BaseFragment {
 
     View.OnClickListener takePhotoListener = new View.OnClickListener() {
         @Override
-        public void onClick(View view) {
+        public void onClick(final View view) {
             if (view.getId() == R.id.tv_content1) {
-                takePhoto((String) view.getTag());
+                PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(CertificationActivity.this,
+                        new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionsResultAction() {
+
+                            @Override
+                            public void onGranted() {
+                                takePhoto((String) view.getTag());
+                            }
+
+                            @Override
+                            public void onDenied(String permission) {
+                                showToast("请您允许应用访问摄像头和存储设备");
+                            }
+                        }
+                );
             } else if (view.getId() == R.id.tv_content2) {
-                pickPicture((String) view.getTag());
+                PermissionsManager.getInstance().requestPermissionsIfNecessaryForResult(CertificationActivity.this,
+                        new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, new PermissionsResultAction() {
+
+                            @Override
+                            public void onGranted() {
+                                pickPicture((String) view.getTag());
+                            }
+
+                            @Override
+                            public void onDenied(String permission) {
+                                showToast("请您允许应用访问存储设备");
+                            }
+                        }
+                );
             }
             mTakeDialog.cancel();
         }
@@ -215,7 +209,7 @@ public class ProfileFragment extends BaseFragment {
             }
             Uri selectedImage = data.getData();
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
-            Cursor cursor = getActivity().getContentResolver().query(selectedImage,
+            Cursor cursor = getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
             cursor.moveToFirst();
 
@@ -243,19 +237,23 @@ public class ProfileFragment extends BaseFragment {
         // 保存最终的截图
         File photoFileCorp = new File(getFILE_PATH_TEMP(), String.format("%s.jpg", System.currentTimeMillis())); // 剪切后存储的图片
         mPhotoPathCrop = photoFileCorp.getAbsolutePath();
-
+        if (mCurrCorpImageId.equals(iv_front_select.getId() + "")) {
+            ID_front_path = mPhotoPathCrop;
+        } else {
+            ID_back_path = mPhotoPathCrop;
+        }
         Intent intent = new Intent("com.android.camera.action.CROP");
         intent.setDataAndType(uri1, "image/*");
         // crop为true是设置在开启的intent中设置显示的view可以剪裁
         intent.putExtra("crop", "true");
 
         // aspectX aspectY 是宽高的比例
-        intent.putExtra("aspectX", 1);
-        intent.putExtra("aspectY", 1);
+        intent.putExtra("aspectX", 16);
+        intent.putExtra("aspectY", 9);
 
         // outputX,outputY 是剪裁图片的宽高
-        intent.putExtra("outputX", size);
-        intent.putExtra("outputY", size);
+        intent.putExtra("outputX", 960);
+        intent.putExtra("outputY", 540);
         intent.putExtra("return-data", false);
 
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(mPhotoPathCrop))); // 剪切完输出路径
@@ -277,7 +275,16 @@ public class ProfileFragment extends BaseFragment {
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 2;
         Bitmap bm = BitmapFactory.decodeFile(filePath, options);
-        iv_photo.setImageBitmap(bm);
+        if (mCurrCorpImageId.equals(iv_front_select.getId() + "")) {
+            iv_id_front.setImageBitmap(bm);
+            iv_id_front.setVisibility(View.VISIBLE);
+            ll_front.setVisibility(View.GONE);
+        } else {
+            iv_id_back.setImageBitmap(bm);
+            iv_id_back.setVisibility(View.VISIBLE);
+            ll_back.setVisibility(View.GONE);
+        }
+        updateSubmitStatus();
     }
 
     private String getFILE_PATH_TEMP() {
@@ -287,4 +294,25 @@ public class ProfileFragment extends BaseFragment {
         }
         return FILE_PATH_TEMP;
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        PermissionsManager.getInstance().notifyPermissionsChange(permissions, grantResults);
+    }
+
+    @TextChange({R.id.et_id,R.id.et_name})
+    void textChange(){
+        updateSubmitStatus();
+    }
+
+    private void updateSubmitStatus() {
+        if (et_name.getText().toString().length() > 0 && et_id.getText().toString().length() == 18 && !TextUtils.isEmpty(ID_front_path) && !TextUtils.isEmpty(ID_back_path)) {
+            btn_submit.setEnabled(true);
+        }else{
+            btn_submit.setEnabled(false);
+        }
+    }
+
 }
