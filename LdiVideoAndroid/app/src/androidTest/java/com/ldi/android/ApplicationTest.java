@@ -1,4 +1,4 @@
-package com.ldi.android;
+package com.zhenaixuanyan.app.videos;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

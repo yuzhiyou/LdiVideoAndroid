@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true"
     android:clipToPadding="true"
     android:orientation="vertical"
-    tools:context="com.ldi.android.Activitys.VideoListActivity">
+    tools:context="com.zhenaixuanyan.app.videos.Activitys.VideoListActivity">
 
     <include layout="@layout/navigation_bar_back"/>
 

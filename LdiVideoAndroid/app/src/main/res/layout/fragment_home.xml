@@ -5,7 +5,7 @@
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
                 android:background="@color/colorBackground"
-             tools:context="com.ldi.android.Activitys.Fragments.Tabbar.HomeFragment">
+             tools:context="com.zhenaixuanyan.app.videos.Activitys.Fragments.Tabbar.HomeFragment">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -24,12 +24,12 @@
                 android:layout_weight="1">
 
 
-                <com.ldi.android.flowwidget.ViewFlow
+                <com.zhenaixuanyan.app.videos.flowwidget.ViewFlow
                     android:id="@+id/banner_flow"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:background="@mipmap/banner_default" >
-                </com.ldi.android.flowwidget.ViewFlow>
+                </com.zhenaixuanyan.app.videos.flowwidget.ViewFlow>
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="30dp"
@@ -37,7 +37,7 @@
                     android:paddingBottom="5dp"
                     android:background="@color/banner_info_background"
                     android:layout_gravity="bottom">
-                    <com.ldi.android.flowwidget.CircleFlowIndicator
+                    <com.zhenaixuanyan.app.videos.flowwidget.CircleFlowIndicator
                         android:id="@+id/viewflowindic"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"

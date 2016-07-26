@@ -5,7 +5,7 @@
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true"
                 android:clipToPadding="true"
-                tools:context="com.ldi.android.Activitys.RegisterPassActivity">
+                tools:context="com.zhenaixuanyan.app.videos.Activitys.RegisterPassActivity">
 
     <!--导航条-->
     <include android:id="@+id/include" layout="@layout/navigation_bar_back" />

@@ -9,7 +9,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:background="@color/colorBackground"
-    tools:context="com.ldi.android.Activitys.VideoPayActivity">
+    tools:context="com.zhenaixuanyan.app.videos.Activitys.VideoPayActivity">
 
     <include layout="@layout/navigation_bar_back"/>
 

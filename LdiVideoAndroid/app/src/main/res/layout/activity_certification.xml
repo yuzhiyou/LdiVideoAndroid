@@ -8,7 +8,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:background="@color/white"
-    tools:context="com.ldi.android.Activitys.CertificationActivity">
+    tools:context="com.zhenaixuanyan.app.videos.Activitys.CertificationActivity">
 
     <include layout="@layout/navigation_bar_back"/>
 

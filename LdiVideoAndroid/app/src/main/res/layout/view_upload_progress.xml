@@ -7,7 +7,7 @@
     android:clipToPadding="true"
     android:fitsSystemWindows="true"
     android:background="@color/colorBackground"
-    tools:context="com.ldi.android.Activitys.ChangeProfileActivity">
+    tools:context="com.zhenaixuanyan.app.videos.Activitys.ChangeProfileActivity">
 
     <include android:id="@+id/actionbar" layout="@layout/navigation_bar_back"/>
 

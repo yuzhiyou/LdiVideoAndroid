@@ -5,7 +5,7 @@
     android:clipToPadding="true"
     android:orientation="vertical"
     android:background="@color/colorBackground"
-    tools:context="com.ldi.android.Activitys.Fragments.Tabbar.ProfileFragment">
+    tools:context="com.zhenaixuanyan.app.videos.Activitys.Fragments.Tabbar.ProfileFragment">
     <!--ActionBar-->
     <include layout="@layout/navigation_bar" />
 

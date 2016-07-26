@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:fitsSystemWindows="true"
     android:clipToPadding="true"
-    tools:context="com.ldi.android.Activitys.LoginActivity">
+    tools:context="com.zhenaixuanyan.app.videos.Activitys.LoginActivity">
     <!--导航条-->
     <include layout="@layout/navigation_bar_back" />
     <!--内容-->

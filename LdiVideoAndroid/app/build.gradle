@@ -9,7 +9,7 @@ android {
     aaptOptions.useNewCruncher = false
 
     defaultConfig {
-        applicationId "com.ldi.android"
+        applicationId "com.zhenaixuanyan.app.videos"
         minSdkVersion 16
         targetSdkVersion 23
         versionCode 1
@@ -43,7 +43,7 @@ apt {
         // if you have multiple outputs (when using splits), you may want to have other index than 0
 
         // you should set your package name here if you are using different application IDs
-        resourcePackageName "com.ldi.android"
+        resourcePackageName "com.zhenaixuanyan.app.videos"
 
         // You can set optional annotation processing options here, like these commented options:
         // logLevel 'INFO'
