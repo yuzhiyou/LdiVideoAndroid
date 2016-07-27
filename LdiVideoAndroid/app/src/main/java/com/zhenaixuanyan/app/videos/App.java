@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
+import com.tencent.mm.sdk.openapi.IWXAPI;
+import com.tencent.mm.sdk.openapi.WXAPIFactory;
 import com.zhenaixuanyan.app.videos.Beans.User;
 
 import org.androidannotations.annotations.EApplication;
@@ -19,6 +21,9 @@ import org.androidannotations.annotations.EApplication;
 public class App extends Application {
     public User mUser = null;   //当前用户
     public boolean isNetworkConnected;
+    // IWXAPI 是第三方app和微信通信的openapi接口
+    private IWXAPI wxApi;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -41,6 +46,11 @@ public class App extends Application {
         //        .cache(null)
         //        .build();
         //UploadService.HTTP_STACK = new OkHttpStack(client);
+
+        // 通过WXAPIFactory工厂，获取IWXAPI的实例
+        wxApi = WXAPIFactory.createWXAPI(this, Constants.APP_ID, false);
+        // 将该app注册到微信
+        wxApi.registerApp(Constants.APP_ID);
     }
     /**
      * 获取默认

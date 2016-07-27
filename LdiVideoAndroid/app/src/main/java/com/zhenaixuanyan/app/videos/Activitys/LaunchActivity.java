@@ -3,21 +3,16 @@ package com.zhenaixuanyan.app.videos.Activitys;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.view.Window;
 import android.widget.ImageView;
 
 import com.zhenaixuanyan.app.videos.Activitys.Base.BaseActivity;
 import com.zhenaixuanyan.app.videos.App_;
-import com.zhenaixuanyan.app.videos.Beans.User;
 import com.zhenaixuanyan.app.videos.R;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
-import org.androidannotations.annotations.WindowFeature;
-
-import tcking.github.com.giraffeplayer.GiraffePlayerActivity;
 
 @EActivity(R.layout.activity_launch)
 public class LaunchActivity extends BaseActivity implements  Animator.AnimatorListener{
@@ -28,6 +23,7 @@ public class LaunchActivity extends BaseActivity implements  Animator.AnimatorLi
 
     @AfterViews
     void afterViews(){
+
         setSystemTintColorBar(R.color.launch_bg_color);
 
         //动画
