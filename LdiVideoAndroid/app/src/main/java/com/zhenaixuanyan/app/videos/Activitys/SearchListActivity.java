@@ -86,6 +86,7 @@ public class SearchListActivity extends BaseActivity {
     private void initDatas(){
         for (int i=0;i<20;i++){
             Video v = new Video();
+            v.v_image = "http://pic2.ooopic.com/11/11/41/37b1OOOPIC87.jpg";
             mDatas.add(v);
         }
     }
