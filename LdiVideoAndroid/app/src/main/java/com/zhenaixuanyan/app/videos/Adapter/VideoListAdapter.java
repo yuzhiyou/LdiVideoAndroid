@@ -1,5 +1,6 @@
 package com.zhenaixuanyan.app.videos.Adapter;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.zhenaixuanyan.app.videos.Beans.Video;
 import com.zhenaixuanyan.app.videos.R;
 import com.makeramen.roundedimageview.RoundedImageView;
@@ -18,9 +20,15 @@ import java.util.List;
  */
 public class VideoListAdapter extends RecyclerView.Adapter<ViewHolder> {
     private List<Video> list;
+    private Context mContext;
 
     private static final int TYPE_ITEM = 0;
     private static final int TYPE_FOOTER = 1;
+
+    public VideoListAdapter(Context ctx){
+        this.mContext = ctx;
+    }
+
     public interface OnItemClickLitener
     {
         void onItemClick(View view, int position);
@@ -63,8 +71,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         if (holder instanceof ItemViewHolder) {
-            //((ItemViewHolder) holder).tv_first_title.setText(list.get(position).getV_name());
-
+            Picasso.with(mContext).load(list.get(position).v_image).into(((ItemViewHolder) holder).iv_video);
         }
         // 如果设置了回调，则设置点击事件
         if (mOnItemClickLitener != null)
@@ -74,8 +81,9 @@ public class VideoListAdapter extends RecyclerView.Adapter<ViewHolder> {
                 @Override
                 public void onClick(View v)
                 {
+                    v.setTag(list.get(position));
                     int pos = holder.getLayoutPosition();
-                    mOnItemClickLitener.onItemClick(holder.itemView, pos);
+                    mOnItemClickLitener.onItemClick(v, pos);
                 }
             });
 

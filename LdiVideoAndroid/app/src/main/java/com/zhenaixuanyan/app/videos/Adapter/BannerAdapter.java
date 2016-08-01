@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
-import com.zhenaixuanyan.app.videos.Beans.Banner;
+import com.squareup.picasso.Picasso;
+import com.zhenaixuanyan.app.videos.Beans.Video;
 import com.zhenaixuanyan.app.videos.R;
 
 import java.util.ArrayList;
@@ -20,10 +21,10 @@ public class BannerAdapter extends BaseAdapter {
 
     private Context mContext;
     private LayoutInflater mInflater;
-    private ArrayList<Banner> bannerList;
+    private ArrayList<Video> bannerList;
     private View.OnClickListener bannerClickListenter;
 
-    public BannerAdapter(Context c,ArrayList<Banner> list){
+    public BannerAdapter(Context c,ArrayList<Video> list){
         this.mContext = c;
         this.bannerList = list;
         mInflater = (LayoutInflater) mContext
@@ -66,9 +67,10 @@ public class BannerAdapter extends BaseAdapter {
         } else {
             holder = (ViewCache) convertView.getTag();
         }
-        final Banner banner = bannerList.get(position
+        final Video banner = bannerList.get(position
                 % bannerList.size());
-        holder.iv_img.setImageResource(R.mipmap.banner_default);
+        Picasso.with(mContext).load(banner.v_image).into(holder.iv_img);
+        holder.iv_img.setTag(banner);
         holder.iv_img.setOnClickListener(bannerClickListenter);
         return convertView;
     }

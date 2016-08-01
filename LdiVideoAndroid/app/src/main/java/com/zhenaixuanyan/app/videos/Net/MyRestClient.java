@@ -1,12 +1,15 @@
 package com.zhenaixuanyan.app.videos.Net;
 
 import com.zhenaixuanyan.app.videos.Beans.WepApi.Request.CheckCodeRequest;
+import com.zhenaixuanyan.app.videos.Beans.WepApi.Request.IndexVideoRequest;
 import com.zhenaixuanyan.app.videos.Beans.WepApi.Request.UserFindRequest;
 import com.zhenaixuanyan.app.videos.Beans.WepApi.Request.UserLoginRequest;
 import com.zhenaixuanyan.app.videos.Beans.WepApi.Request.UserRegisterRequest;
+import com.zhenaixuanyan.app.videos.Beans.WepApi.Response.IndexVideoResponse;
 import com.zhenaixuanyan.app.videos.Beans.WepApi.Response.StatusResponse;
 import com.zhenaixuanyan.app.videos.Beans.WepApi.Response.UserLoginResponse;
 import com.zhenaixuanyan.app.videos.Beans.WepApi.Response.UserRegisterResponse;
+import com.zhenaixuanyan.app.videos.Beans.WepApi.Response.VideoResponse;
 import com.zhenaixuanyan.app.videos.Constants;
 
 import org.androidannotations.rest.spring.annotations.Body;
@@ -17,6 +20,7 @@ import org.androidannotations.rest.spring.api.RestClientHeaders;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
 /**
@@ -63,4 +67,13 @@ public interface MyRestClient extends RestClientHeaders {
      */
     @Post("/v1/video/watch/save")
     String saveWatch(@Body MultiValueMap<String, Object> data);
+
+    @Post("/v1/video/index")
+    IndexVideoResponse getHomeVideoList(@Body LinkedMultiValueMap<String,String> request);
+
+    @Post("/v1/video/hot")
+    VideoResponse getHotVideoList(@Body IndexVideoRequest data);
+
+    @Post("/v1/video/sample")
+    VideoResponse getSampleVideoList(@Body IndexVideoRequest data);
  }

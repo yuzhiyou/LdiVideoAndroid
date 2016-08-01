@@ -10,12 +10,19 @@ import android.view.View;
 import com.zhenaixuanyan.app.videos.Activitys.Base.BaseActivity;
 import com.zhenaixuanyan.app.videos.Adapter.VideoListAdapter;
 import com.zhenaixuanyan.app.videos.Beans.Video;
+import com.zhenaixuanyan.app.videos.Beans.WepApi.Request.IndexVideoRequest;
+import com.zhenaixuanyan.app.videos.Beans.WepApi.Response.VideoResponse;
+import com.zhenaixuanyan.app.videos.Net.MyRestClient;
 import com.zhenaixuanyan.app.videos.R;
+import com.zhenaixuanyan.app.videos.Utils.LogUtils;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.rest.spring.annotations.RestService;
 
 import java.util.ArrayList;
 
@@ -23,13 +30,16 @@ import tcking.github.com.giraffeplayer.GiraffePlayerActivity;
 
 @EActivity(R.layout.activity_video_list)
 public class VideoListActivity extends BaseActivity {
+    @RestService
+    MyRestClient restClient;
 
     @ViewById(android.R.id.list)
     RecyclerView mRecyclerView;
     @ViewById(R.id.swipe_refresh_widget)
     SwipeRefreshLayout mSwipeRefreshWidget;
 
-    private ArrayList<Video> mDatas = new ArrayList<Video>();
+    private ArrayList<Video> mDatas = new ArrayList<>();
+    VideoListAdapter videoListAdapter = null;
 
     @AfterViews
     void afterViews(){
@@ -58,25 +68,9 @@ public class VideoListActivity extends BaseActivity {
             }
 
         });
-        initDatas();
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
-        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        VideoListAdapter adapter = new VideoListAdapter();
-        adapter.setList(mDatas);
-        mRecyclerView.setAdapter(adapter);
-        mSwipeRefreshWidget.setRefreshing(false);
-        adapter.setOnItemClickLitener(new VideoListAdapter.OnItemClickLitener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                goPlay("");
-            }
+        showProcessHUD(null);
+        getVideoData();
 
-            @Override
-            public void onItemLongClick(View view, int position) {
-
-            }
-        });
     }
 
     private void initDatas(){
@@ -86,7 +80,7 @@ public class VideoListActivity extends BaseActivity {
         }
     }
     private void goPlay(String url){
-        GiraffePlayerActivity.configPlayer(this).play("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+        GiraffePlayerActivity.configPlayer(this).play(url);
     }
 
     @Click({R.id.navigation_bar_back_ib})
@@ -97,4 +91,53 @@ public class VideoListActivity extends BaseActivity {
                 break;
         }
     }
+
+    private void bindDatas(){
+        if(videoListAdapter == null){
+            mRecyclerView.setHasFixedSize(true);
+            mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
+            mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+            videoListAdapter = new VideoListAdapter();
+            videoListAdapter.setList(mDatas);
+            mRecyclerView.setAdapter(videoListAdapter);
+            mSwipeRefreshWidget.setRefreshing(false);
+            videoListAdapter.setOnItemClickLitener(new VideoListAdapter.OnItemClickLitener() {
+                @Override
+                public void onItemClick(View view, int position) {
+                    goPlay(mDatas.get(position).v_url);
+                }
+
+                @Override
+                public void onItemLongClick(View view, int position) {
+
+                }
+            });
+        }else{
+            videoListAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Background
+    void getVideoData(){
+        IndexVideoRequest request = new IndexVideoRequest();
+        request.setUserid("1");
+        try{
+            VideoResponse response = restClient.getHotVideoList(request);
+            LogUtils.i("********"+response.data.size());
+            loadVideoList(response);
+        }catch (Exception e){
+
+        }
+    }
+
+    @UiThread
+    void loadVideoList(VideoResponse response){
+        hideProcessHUD();
+        LogUtils.i(">>>>>>>>>>>>>"+response.status+"-"+response.message+"-"+response.data.size());
+        mDatas.clear();
+        mDatas.addAll(response.data);
+        bindDatas();
+    }
+
+
 }
