@@ -20,6 +20,7 @@ import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.rest.spring.annotations.RestService;
@@ -41,9 +42,12 @@ public class VideoListActivity extends BaseActivity {
     private ArrayList<Video> mDatas = new ArrayList<>();
     VideoListAdapter videoListAdapter = null;
 
+    @Extra("videoType")
+    String videoType;
+
     @AfterViews
-    void afterViews(){
-        setTitle(R.id.navigation_bar_back_tv,R.string.all_demo);
+    void afterViews() {
+        setTitle(R.id.navigation_bar_back_tv, R.string.all_demo);
         //mSwipeRefreshWidget.setColorScheme(R.color.color1, R.color.color2,
         //        R.color.color3, R.color.color4);
         //mSwipeRefreshWidget.setOnRefreshListener(this);
@@ -73,29 +77,30 @@ public class VideoListActivity extends BaseActivity {
 
     }
 
-    private void initDatas(){
-        for (int i=0;i<20;i++){
+    private void initDatas() {
+        for (int i = 0; i < 20; i++) {
             Video v = new Video();
             mDatas.add(v);
         }
     }
-    private void goPlay(String url){
+
+    private void goPlay(String url) {
         GiraffePlayerActivity.configPlayer(this).play(url);
     }
 
     @Click({R.id.navigation_bar_back_ib})
-    void click(View v){
-        switch (v.getId()){
+    void click(View v) {
+        switch (v.getId()) {
             case R.id.navigation_bar_back_ib:
                 finish();
                 break;
         }
     }
 
-    private void bindDatas(){
-        if(videoListAdapter == null){
+    private void bindDatas() {
+        if (videoListAdapter == null) {
             mRecyclerView.setHasFixedSize(true);
-            mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
+            mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
             mRecyclerView.setItemAnimator(new DefaultItemAnimator());
             videoListAdapter = new VideoListAdapter();
             videoListAdapter.setList(mDatas);
@@ -112,28 +117,33 @@ public class VideoListActivity extends BaseActivity {
 
                 }
             });
-        }else{
+        } else {
             videoListAdapter.notifyDataSetChanged();
         }
     }
 
     @Background
-    void getVideoData(){
+    void getVideoData() {
         IndexVideoRequest request = new IndexVideoRequest();
         request.setUserid("1");
-        try{
-            VideoResponse response = restClient.getHotVideoList(request);
-            LogUtils.i("********"+response.data.size());
+        try {
+            VideoResponse response;
+            if (videoType.equalsIgnoreCase("hot")) {
+                response = restClient.getHotVideoList(request);
+            } else {
+                response = restClient.getSampleVideoList(request);
+            }
+            LogUtils.i("********" + response.data.size());
             loadVideoList(response);
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
     }
 
     @UiThread
-    void loadVideoList(VideoResponse response){
+    void loadVideoList(VideoResponse response) {
         hideProcessHUD();
-        LogUtils.i(">>>>>>>>>>>>>"+response.status+"-"+response.message+"-"+response.data.size());
+        LogUtils.i(">>>>>>>>>>>>>" + response.status + "-" + response.message + "-" + response.data.size());
         mDatas.clear();
         mDatas.addAll(response.data);
         bindDatas();

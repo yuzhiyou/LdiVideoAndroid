@@ -71,7 +71,10 @@ public class VideoListAdapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         if (holder instanceof ItemViewHolder) {
-            Picasso.with(mContext).load(list.get(position).v_image).into(((ItemViewHolder) holder).iv_video);
+            Video video = list.get(position);
+            Picasso.with(mContext).load(video.v_image).into(((ItemViewHolder) holder).iv_video);
+            ((ItemViewHolder) holder).tv_first_title.setText(video.v_name);
+            ((ItemViewHolder) holder).tv_second_title.setText(video.v_describe);
         }
         // 如果设置了回调，则设置点击事件
         if (mOnItemClickLitener != null)

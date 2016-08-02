@@ -10,6 +10,7 @@ import com.zhenaixuanyan.app.videos.R;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.Extra;
 import org.androidannotations.annotations.ViewById;
 
 import tcking.github.com.giraffeplayer.GiraffePlayerActivity;
@@ -25,6 +26,8 @@ public class VideoPayActivity extends BaseActivity {
 
     @ViewById(R.id.btn_ok)
     Button btn_ok;
+    @Extra("videoUrl")
+    String videoUrl;
 
    @AfterViews
     void afterViews(){
@@ -51,7 +54,7 @@ public class VideoPayActivity extends BaseActivity {
            }
            case R.id.btn_ok:{
                //调用支付的SDK
-               GiraffePlayerActivity.configPlayer(this).play("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
+               GiraffePlayerActivity.configPlayer(this).play(videoUrl);
                break;
            }
            default:break;
