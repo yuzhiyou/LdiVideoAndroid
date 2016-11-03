@@ -45,9 +45,6 @@ public class RegisterPassActivity extends BaseActivity {
     @Extra("mobile")
     String mobile;
 
-    @Extra("chekcode")
-    String chekcode;
-
     @Extra("invitation_code")
     String invitation_code;
 
@@ -70,8 +67,7 @@ public class RegisterPassActivity extends BaseActivity {
                     hideSoftKeyboard(passwordConfirmET);
                     //进度指示
                     showProcessHUD(null);
-                    LogUtils.putLog(mobile+"=="+chekcode);
-                    userRegisterBackground(mobile,passwordET.getText().toString(),chekcode,invitation_code);
+                    userRegisterBackground(mobile,passwordET.getText().toString(),invitation_code);
                 }else{
                     showToast(R.string.pass_not_same);
                 }
@@ -91,12 +87,11 @@ public class RegisterPassActivity extends BaseActivity {
      * 用户注册
      * */
     @Background
-    void userRegisterBackground(String mobile,String password,String verify_code,String invitation_code){
+    void userRegisterBackground(String mobile,String password,String invitation_code){
         //参数设置
         UserRegisterRequest action = new UserRegisterRequest();
         action.setU_phone(mobile);
         action.setU_password(password);
-        action.setVerify_code(verify_code);
         action.setU_invitation_code(invitation_code);
         try {
             UserRegisterResponse response = restClient.userRegister(action);

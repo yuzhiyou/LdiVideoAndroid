@@ -1,26 +1,30 @@
 package com.zhenaixuanyan.app.videos.Activitys.Fragments.Tabbar;
 
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.makeramen.roundedimageview.RoundedImageView;
+import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+import com.bigkoo.convenientbanner.holder.Holder;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.squareup.picasso.Picasso;
 import com.zhenaixuanyan.app.videos.Activitys.Fragments.BaseFragment;
 import com.zhenaixuanyan.app.videos.Activitys.SearchListActivity_;
 import com.zhenaixuanyan.app.videos.Activitys.VideoListActivity_;
-import com.zhenaixuanyan.app.videos.Activitys.VideoPayActivity_;
-import com.zhenaixuanyan.app.videos.Adapter.BannerAdapter;
-import com.zhenaixuanyan.app.videos.Beans.Banner;
+import com.zhenaixuanyan.app.videos.Activitys.Views.NoScrollGridView;
+import com.zhenaixuanyan.app.videos.Adapter.VideoGridItemAdapter;
+import com.zhenaixuanyan.app.videos.App_;
 import com.zhenaixuanyan.app.videos.Beans.Video;
 import com.zhenaixuanyan.app.videos.Beans.WepApi.Response.IndexVideoResponse;
 import com.zhenaixuanyan.app.videos.Net.MyRestClient;
 import com.zhenaixuanyan.app.videos.R;
 import com.zhenaixuanyan.app.videos.Utils.LogUtils;
-import com.zhenaixuanyan.app.videos.flowwidget.CircleFlowIndicator;
-import com.zhenaixuanyan.app.videos.flowwidget.ViewFlow;
-
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
@@ -31,6 +35,7 @@ import org.androidannotations.rest.spring.annotations.RestService;
 import org.springframework.util.LinkedMultiValueMap;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import tcking.github.com.giraffeplayer.GiraffePlayerActivity;
 
@@ -39,53 +44,22 @@ import tcking.github.com.giraffeplayer.GiraffePlayerActivity;
  */
 @EFragment(R.layout.fragment_home)
 public class HomeFragment extends BaseFragment {
-
-    private BannerAdapter bannerAdapter;
-    private ArrayList<Video> bannerList = new ArrayList<>();
-
-
     //网络请求
     @RestService
     MyRestClient restClient;
 
-    @ViewById(R.id.banner_flow)
-    ViewFlow banner_flow;
+    @ViewById(R.id.homeRecommendBanner)
+    ConvenientBanner homeRecommendBanner;
+    //示例
+    @ViewById(R.id.homeSimpleVideoGridView)
+    NoScrollGridView simpleVideoGridView;
 
-    @ViewById(R.id.viewflowindic)
-    CircleFlowIndicator viewflowindic;
-    @ViewById
-    RoundedImageView iv_demo_video1;
-    @ViewById
-    RoundedImageView iv_demo_video2;
+    private VideoGridItemAdapter simpleVideoAdapter;
+    //热点
+    @ViewById(R.id.homeHotVideoGridView)
+    NoScrollGridView hotVideoGridView;
 
-    @ViewById
-    RoundedImageView iv_recommend_video1;
-
-    @ViewById
-    RoundedImageView iv_recommend_video2;
-    @ViewById
-    TextView tv_info;
-    @ViewById
-    TextView tv_demo_video1_title1;
-    @ViewById
-    TextView tv_demo_video1_title2;
-    @ViewById
-    TextView tv_demo_video2_title1;
-    @ViewById
-    TextView tv_demo_video2_title2;
-    @ViewById
-    TextView tv_recommend_video1_title1;
-    @ViewById
-    TextView tv_recommend_video1_title2;
-    @ViewById
-    TextView tv_recommend_video2_title1;
-    @ViewById
-    TextView tv_recommend_video2_title2;
-
-    Video sample1 ;
-    Video sample2 ;
-    Video hot1;
-    Video hot2;
+    private VideoGridItemAdapter hotVideoAdapter;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -113,74 +87,63 @@ public class HomeFragment extends BaseFragment {
 
     @AfterViews
     void afterViews() {
-        //title
-        setTitle(R.id.navigation_bar_title_tv, R.string.tabar_home);
+        //view set
+        viewSetting();
         //进度指示
         showProcessHUD(null);
         getIndexData();
     }
-
-    private void addBnner() {
-        for (int i = 0; i < 5; i++) {
-            Banner b = new Banner();
-            b.setImg_url("");
-            //bannerList.add(b);
-        }
+    /**
+     * View设置
+     * */
+    private void viewSetting(){
+        //示例
+        simpleVideoAdapter = new VideoGridItemAdapter(getActivity());
+        simpleVideoAdapter.setList(new ArrayList<Video>());
+        simpleVideoGridView.setAdapter(simpleVideoAdapter);
+        //热点
+        hotVideoAdapter = new VideoGridItemAdapter(getActivity());
+        hotVideoAdapter.setList(new ArrayList<Video>());
+        hotVideoGridView.setAdapter(hotVideoAdapter);
     }
+    /**
+     * 更新banner
+     * */
+    private void updateBanner(final List<Video> data) {
+        homeRecommendBanner.setPages(
+                new CBViewHolderCreator() {
+                    @Override
+                    public LocalImageHolderView createHolder() {
+                        return new LocalImageHolderView();
+                    }
+                }, data)
+                //设置两个点图片作为翻页指示器，不设置则没有指示器，可以根据自己需求自行配合自己的指示器,不需要圆点指示器可用不设
+                .setPageIndicator(new int[]{R.drawable.banner_page_indicator_activie, R.drawable.banner_page_indicator})
+                //设置指示器的方向
+                .setPageIndicatorAlign(ConvenientBanner.PageIndicatorAlign.ALIGN_PARENT_RIGHT);
+        homeRecommendBanner.startTurning(3000);
+        homeRecommendBanner.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Video video = data.get(position);
+                LogUtils.i("url=" + video.getV_url());
 
-    private void updateBanner() {
-        if (bannerAdapter == null) {
-            bannerAdapter = new BannerAdapter(getActivity(), bannerList);
-            bannerAdapter.setBannerClickListenter(bannerClick);
-            banner_flow.setAdapter(bannerAdapter);
-            banner_flow.setmSideBuffer(bannerList.size()); // 实际图片张数，我的ImageAdapter实际图片张数
-            if (bannerList.size() > 1) {
-                banner_flow.setFlowIndicator(viewflowindic);
+                goPlay(video.getV_url());
             }
-            banner_flow.setTimeSpan(4500);
-            banner_flow.setSelection(3 * 1000); // 设置初始位置
-            banner_flow.startAutoFlowTimer(); // 启动自动播放
-            banner_flow.setOnViewSwitchListener(new ViewFlow.ViewSwitchListener() {
-                @Override
-                public void onSwitched(View view, int position) {
-                    tv_info.setText(bannerList.get(position % 5).v_name);
-                }
-            });
-        } else {
-            bannerAdapter.notifyDataSetChanged();
-        }
-
-
+        });
     }
 
-    @Click({R.id.iv_demo_video1, R.id.iv_demo_video2, R.id.iv_recommend_video1, R.id.iv_recommend_video2, R.id.tv_video_more, R.id.tv_recommend_more, R.id.ll_search})
+    @Click({ R.id.homeSimpleVideoSectionMore, R.id.homeHotVideoSectionMore, R.id.homeNavigationBarItemSearch})
     void click(View v) {
         switch (v.getId()) {
-            case R.id.iv_demo_video1: {
-                goPlay(sample1.v_url);
-                break;
-            }
-            case R.id.iv_demo_video2: {
-                goPlay(sample2.v_url);
-                break;
-            }
-            case R.id.iv_recommend_video1: {
-                VideoPayActivity_.intent(this).videoUrl(hot1.v_url).start();
-                break;
-            }
-            case R.id.iv_recommend_video2: {
-                VideoPayActivity_.intent(this).videoUrl(hot1.v_url).start();
-                break;
-            }
-
-            case R.id.ll_search:
+            case R.id.homeNavigationBarItemSearch:
                 SearchListActivity_.intent(this).start();
                 break;
-            case R.id.tv_recommend_more:
-                VideoListActivity_.intent(this).videoType("hot").start();
+            case R.id.homeHotVideoSectionMore:
+                VideoListActivity_.intent(this).extra("videoType","hot").start();
                 break;
-            case R.id.tv_video_more:
-                VideoListActivity_.intent(this).videoType("sample").start();
+            case R.id.homeSimpleVideoSectionMore:
+                VideoListActivity_.intent(this).extra("videoType","sample").start();
                 break;
             default:
                 break;
@@ -191,54 +154,52 @@ public class HomeFragment extends BaseFragment {
         GiraffePlayerActivity.configPlayer(getActivity()).play(url);
     }
 
-    View.OnClickListener bannerClick = new View.OnClickListener() {
-
-        @Override
-        public void onClick(View arg0) {
-            Video video = (Video) arg0.getTag();
-            LogUtils.i("url=" + video.v_url);
-
-            goPlay(video.v_url);
-        }
-    };
-
     @Background
     void getIndexData() {
         LinkedMultiValueMap<String, String> paras = new LinkedMultiValueMap<>();
-        paras.set("userid", "1");
+        paras.set("userid", String.valueOf(App_.getInstance().mUser.getU_id()));
         try {
             IndexVideoResponse response = restClient.getHomeVideoList(paras);
             loadVideoList(response);
         } catch (Exception e) {
-
+            loadVideoList(null);
         }
     }
 
     @UiThread
     void loadVideoList(IndexVideoResponse response) {
         hideProcessHUD();
-        LogUtils.i(">>>>>>>>>>>>>" + response.status + "-" + response.message + "-" + response.data.ad_items.size());
-        bannerList.clear();
-        bannerList.addAll(response.data.ad_items.subList(0, 5));
-        updateBanner();
-        sample1 = response.data.sample_items.get(0);
-        sample2 = response.data.sample_items.get(1);
-        hot1 = response.data.hot_items.get(0);
-        hot2 = response.data.hot_items.get(1);
-
-        Picasso.with(getContext()).load(sample1.v_image).into(iv_demo_video1);
-        Picasso.with(getContext()).load(sample2.v_image).into(iv_demo_video2);
-        Picasso.with(getContext()).load(hot1.v_image).into(iv_recommend_video1);
-        Picasso.with(getContext()).load(hot2.v_image).into(iv_recommend_video2);
-        tv_demo_video1_title1.setText(sample1.v_name);
-        tv_demo_video1_title2.setText(sample1.v_describe);
-        tv_demo_video2_title1.setText(sample2.v_name);
-        tv_demo_video2_title2.setText(sample2.v_describe);
-        tv_recommend_video1_title1.setText(hot1.v_name);
-        tv_recommend_video1_title2.setText(hot1.v_describe);
-        tv_recommend_video2_title1.setText(hot2.v_name);
-        tv_recommend_video2_title2.setText(hot2.v_describe);
+        if (response != null) {
+            //ad
+            updateBanner(response.getData().getAd_items());
+            //simple videos
+            simpleVideoAdapter.setList(response.getData().getSample_items());
+            simpleVideoAdapter.notifyDataSetChanged();
+            //hot videos
+            hotVideoAdapter.setList(response.getData().getHot_items());
+            hotVideoAdapter.notifyDataSetChanged();
+        }
     }
 
+    /**
+     * ad adapter
+     *
+     * **/
+    class LocalImageHolderView implements Holder<Video> {
+        private View holder;
+        @Override
+        public View createView(Context context) {
+            holder = LayoutInflater.from(context).inflate(R.layout.banner_item,null);
+            return holder;
+        }
 
+        @Override
+        public void UpdateUI(Context context, final int position, Video data) {
+            Picasso.with(context)
+                    .load(data.getV_image_thum())
+                    .placeholder(R.mipmap.no_video_image)
+                    .into((ImageView) holder.findViewById(R.id.bannerItemImageIv));
+            ((TextView) holder.findViewById(R.id.bannerItemDescTv)).setText(data.getV_name());
+        }
+    }
 }

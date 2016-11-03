@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">真爱宣言</string>
+    <!--<string name="app_name">真爱宣言</string>-->
+    <string name="app_name">Demo</string>
 
     <!--登录\注册-->
     <string name="input_mobile_hint">请输入手机号码</string>
@@ -9,6 +10,7 @@
     <string name="input_recommend_code_hint">推荐码（非必填）</string>
     <string name="now_register">立即注册-></string>
     <string name="forget_password">忘记密码</string>
+    <string name="update_mobile_number">更改手机号</string>
     <string name="login">登录</string>
     <string name="logout">退出账号</string>
     <string name="register">注册</string>
@@ -44,6 +46,7 @@
     <string name="address">地址</string>
     <string name="ok">确定</string>
     <string name="all_demo">全部示例</string>
+    <string name="all_recommend">全部推荐</string>
     <string name="delete">删除</string>
     <string name="appeal_text">申诉</string>
     <string name="text_photo_pick">从相册选择</string>

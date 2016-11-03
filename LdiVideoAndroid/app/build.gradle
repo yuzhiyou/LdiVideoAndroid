@@ -1,10 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'android-apt'
-def AAVersion = '4.0.0'
+def AAVersion = '4.1.0'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion "24.0.0"
     aaptOptions.cruncherEnabled = false
     aaptOptions.useNewCruncher = false
 
@@ -53,20 +53,17 @@ apt {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     //AA
-    //AA rest
     apt "org.androidannotations:androidannotations:$AAVersion"
     compile "org.androidannotations:androidannotations-api:$AAVersion"
-    //状态栏设置
-    //圆角图片
-    //网络图片加载
-    //百分比布局
-    //event bus
-    //Video
+    //AA rest
+    compile "org.androidannotations:rest-spring-api:$AAVersion"
+    apt "org.androidannotations:rest-spring:$AAVersion"
+    compile 'org.springframework.android:spring-android-rest-template:2.0.0.M4'
+    compile 'com.squareup.okhttp3:okhttp:3.4.1'
+
     compile project(':giraffeplayer')
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha1'
-    compile 'org.androidannotations:rest-spring-api:4.0.0'
     compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     compile 'de.hdodenhof:circleimageview:2.0.0'
     compile 'com.squareup.picasso:picasso:2.5.2'
@@ -74,12 +71,17 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.makeramen:roundedimageview:2.2.1'
     compile 'com.android.support:recyclerview-v7:23.4.0'
-    //compile 'net.gotev:uploadservice:3.0'
-    //compile 'net.gotev:uploadservice-okhttp:3.0'
     compile 'com.android.support:design:23.4.0'
     compile 'com.anthonycr.grant:permissions:1.0'
     testCompile 'junit:junit:4.12'
-    apt 'org.androidannotations:rest-spring:4.0.0'
+    //Banner
+    compile 'com.bigkoo:convenientbanner:2.0.5'
+    //Circle indicator
+    compile 'me.relex:circleindicator:1.2.1@aar'
+    //百分比布局
+    compile 'com.zhy:percent-support-extends:1.1.1'
+    //Section recycler view
+    compile 'io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:1.0.4'
 }
 
 

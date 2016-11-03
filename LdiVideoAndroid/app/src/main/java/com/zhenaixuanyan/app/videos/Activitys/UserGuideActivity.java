@@ -32,9 +32,9 @@ public class UserGuideActivity extends AppCompatActivity {
      *  初始化fragments
      */
     private void initFragments() {
-        mFragments.add(GuideFragment.newInstance(R.color.guide_page1_color,R.mipmap.guide1_logo,R.mipmap.guide1_pointer));
-        mFragments.add(GuideFragment.newInstance(R.color.guide_page2_color,R.mipmap.guide2_logo,R.mipmap.guide2_pointer));
-        mFragments.add(GuideFragment.newInstance(R.color.guide_page3_color,R.mipmap.guide3_logo,R.mipmap.guide3_pointer,true));
+        mFragments.add(GuideFragment.newInstance(R.mipmap.guide1_page,false));
+        mFragments.add(GuideFragment.newInstance(R.mipmap.guide2_page,false));
+        mFragments.add(GuideFragment.newInstance(R.mipmap.guide3_page,true));
         adapter = new GuidePageAdapter(getSupportFragmentManager(),mFragments);
         mViewpager.setAdapter(adapter);
     }

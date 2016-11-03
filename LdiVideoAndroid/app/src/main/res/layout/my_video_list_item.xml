@@ -1,67 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:orientation="vertical"
-              android:paddingLeft="10dp"
-              android:paddingRight="10dp"
-              android:layout_marginTop="10dp"
-              android:layout_height="wrap_content">
+<com.zhy.android.percent.support.PercentLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
 
-
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/iv_video"
+    <ImageView
+        android:id="@+id/myVideoGridItemImageIv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/demo_bg1"
+        android:layout_height="0dp"
+        app:layout_heightPercent="60%w"
+        android:layout_gravity="center_vertical|center_horizontal"
         android:scaleType="centerCrop"
-        app:riv_corner_radius="3dip"
-        app:riv_border_width="0dip"
-        app:riv_mutate_background="true"
-        app:riv_tile_mode="clamp"
-        app:riv_oval="false"
-        android:layout_above="@+id/tv_demo_video1_title1"/>
+        android:src="@mipmap/banner_default" >
+    </ImageView>
     <TextView
-        android:id="@+id/tv_first_title"
+        android:id="@+id/myVideoGridItemTitleTv"
+        android:layout_marginTop="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/title_first_text_size"
-        android:lines="1"
-        android:text="一级标题"/>
-    <TextView
-        android:id="@+id/tv_second_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/title_second_text_size"
-        android:text="二级标题"
-        android:lines="1"
+        android:textColor="@color/Grey_800"
+        android:textSize="14sp"
+        android:text="@string/app_name"
         />
-
-    <LinearLayout
+    <TextView
+        android:id="@+id/myVideoGridItemDescTv"
+        android:layout_marginTop="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/tv_status"
-            android:text="@string/address"
-            android:textColor="@color/Grey_500"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/tv_del"
-            android:text="@string/delete"
-            android:layout_marginLeft="30dp"
-            android:textColor="@color/blue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/tv_appeal"
-            android:text="@string/appeal_text"
-            android:layout_marginLeft="20dp"
-            android:textColor="@color/blue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-
-
-</LinearLayout>
+        android:textColor="@color/Grey_800"
+        android:textSize="14sp"
+        android:text="@string/app_name"
+        />
+</com.zhy.android.percent.support.PercentLinearLayout>

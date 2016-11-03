@@ -21,9 +21,13 @@ public class User implements Serializable{
     private String u_name;      //用户名称
     private String u_password;  //用户密码
     private String u_card_id;   //身份证编号
+    private String u_header;    //用户头像
+    private String u_invitation_code; //用户邀请码
     private String u_card_front;    //身份证正面
     private String u_card_back;     //身份证背面
-    private boolean u_verify;       //是否已认证
+    private int u_verify;       //是否已认证
+    private String u_email;  //邮件
+    private String u_address;  //地址
     private String u_phone;  //手机号
     private String u_verify_date;  //认证日期
 
@@ -75,14 +79,6 @@ public class User implements Serializable{
         this.u_card_back = u_card_back;
     }
 
-    public boolean isU_verify() {
-        return u_verify;
-    }
-
-    public void setU_verify(boolean u_verify) {
-        this.u_verify = u_verify;
-    }
-
     public String getU_verify_date() {
         return u_verify_date;
     }
@@ -97,6 +93,46 @@ public class User implements Serializable{
 
     public void setU_phone(String u_phone) {
         this.u_phone = u_phone;
+    }
+
+    public String getU_header() {
+        return u_header;
+    }
+
+    public void setU_header(String u_header) {
+        this.u_header = u_header;
+    }
+
+    public String getU_invitation_code() {
+        return u_invitation_code;
+    }
+
+    public void setU_invitation_code(String u_invitation_code) {
+        this.u_invitation_code = u_invitation_code;
+    }
+
+    public int getU_verify() {
+        return u_verify;
+    }
+
+    public void setU_verify(int u_verify) {
+        this.u_verify = u_verify;
+    }
+
+    public String getU_email() {
+        return u_email;
+    }
+
+    public void setU_email(String u_email) {
+        this.u_email = u_email;
+    }
+
+    public String getU_address() {
+        return u_address;
+    }
+
+    public void setU_address(String u_address) {
+        this.u_address = u_address;
     }
 
     /**

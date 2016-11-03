@@ -62,15 +62,14 @@ public class SearchListActivity extends BaseActivity {
             }
 
         });
-        initDatas();
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new GridLayoutManager(this,2));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-        VideoListAdapter adapter = new VideoListAdapter();
+        VideoListAdapter adapter = new VideoListAdapter(this);
         adapter.setList(mDatas);
         mRecyclerView.setAdapter(adapter);
         mSwipeRefreshWidget.setRefreshing(false);
-        adapter.setOnItemClickLitener(new VideoListAdapter.OnItemClickLitener() {
+        adapter.setOnItemClickListener(new VideoListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 goPlay("");
@@ -83,15 +82,6 @@ public class SearchListActivity extends BaseActivity {
         });
     }
 
-    private void initDatas(){
-        for (int i=0;i<20;i++){
-            Video v = new Video();
-            v.v_image = "http://pic2.ooopic.com/11/11/41/37b1OOOPIC87.jpg";
-            v.v_name = "v2";
-            v.v_describe="ddd1";
-            mDatas.add(v);
-        }
-    }
     private void goPlay(String url){
         GiraffePlayerActivity.configPlayer(this).play("http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4");
     }

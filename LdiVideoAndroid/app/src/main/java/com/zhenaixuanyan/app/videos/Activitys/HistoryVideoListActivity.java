@@ -9,6 +9,7 @@ import android.view.View;
 
 import com.zhenaixuanyan.app.videos.Activitys.Base.BaseActivity;
 import com.zhenaixuanyan.app.videos.Activitys.Views.SpaceItemDecoration;
+import com.zhenaixuanyan.app.videos.Adapter.HistoryVideoSection;
 import com.zhenaixuanyan.app.videos.Adapter.MyVideoSection;
 import com.zhenaixuanyan.app.videos.App_;
 import com.zhenaixuanyan.app.videos.Beans.Video;
@@ -32,7 +33,7 @@ import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapt
 import tcking.github.com.giraffeplayer.GiraffePlayerActivity;
 
 @EActivity(R.layout.activity_video_list)
-public class MyVideoListActivity extends BaseActivity {
+public class HistoryVideoListActivity extends BaseActivity {
     @RestService
     MyRestClient restClient;
 
@@ -48,7 +49,7 @@ public class MyVideoListActivity extends BaseActivity {
 
     @AfterViews
     void afterViews(){
-        setTitle(R.id.navigation_bar_back_tv,R.string.my_video);
+        setTitle(R.id.navigation_bar_back_tv,R.string.recode);
         //初始化view
         viewSetting();
         //获取数据
@@ -112,7 +113,7 @@ public class MyVideoListActivity extends BaseActivity {
         IndexVideoRequest request = new IndexVideoRequest();
         request.setUserid(String.valueOf(App_.getInstance().mUser.getU_id()));
         try {
-            VideoResponse response = restClient.getMyVideoList(request);
+            VideoResponse response = restClient.getHistoryVideoList(request);
             loadVideoList(response);
         } catch (Exception e) {
             loadVideoList(null);
@@ -127,10 +128,16 @@ public class MyVideoListActivity extends BaseActivity {
             mDatas.addAll(response.data);
 
             videoListAdapter.removeAllSections();
-            videoListAdapter.addSection(new MyVideoSection(this,"以前", mDatas));
-            videoListAdapter.addSection(new MyVideoSection(this,"今天", mDatas));
+            videoListAdapter.addSection(new HistoryVideoSection(this,"以前", mDatas));
+            videoListAdapter.addSection(new HistoryVideoSection(this,"今天", mDatas));
             videoListAdapter.notifyDataSetChanged();
         }
     }
 
+    /**
+     * 播放视频
+     * */
+    private void goPlay(String url) {
+        GiraffePlayerActivity.configPlayer(this).play(url);
+    }
 }

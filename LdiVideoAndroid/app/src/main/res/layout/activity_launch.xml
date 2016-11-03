@@ -3,17 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/launch_bg_color"
     android:fitsSystemWindows="true"
     android:clipToPadding="true"
     tools:context=".Activitys.LaunchActivity">
 
     <ImageView
         android:id="@+id/launchLogoImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="100dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
         android:contentDescription="@string/app_name"
-        android:src="@mipmap/logo" />
+        android:src="@mipmap/launch" />
 </FrameLayout>

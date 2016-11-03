@@ -39,7 +39,7 @@
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
             android:inputType="numberSigned"
-            android:maxLength="4"
+            android:maxLength="6"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="@dimen/login_edittext_height"

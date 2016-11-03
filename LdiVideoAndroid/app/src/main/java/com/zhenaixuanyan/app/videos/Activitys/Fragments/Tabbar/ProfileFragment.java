@@ -20,6 +20,7 @@ import com.zhenaixuanyan.app.videos.Activitys.CertificationActivity_;
 import com.zhenaixuanyan.app.videos.Activitys.ChangePasswordActivity_;
 import com.zhenaixuanyan.app.videos.Activitys.ChangeProfileActivity_;
 import com.zhenaixuanyan.app.videos.Activitys.Fragments.BaseFragment;
+import com.zhenaixuanyan.app.videos.Activitys.HistoryVideoListActivity_;
 import com.zhenaixuanyan.app.videos.Activitys.MyVideoListActivity_;
 import com.zhenaixuanyan.app.videos.Activitys.UserEnterActivity_;
 import com.zhenaixuanyan.app.videos.Activitys.VideoListActivity_;
@@ -137,7 +138,7 @@ public class ProfileFragment extends BaseFragment {
                 break;
             }
             case R.id.rl_recode: {
-                VideoListActivity_.intent(this).start();
+                HistoryVideoListActivity_.intent(this).start();
                 break;
             }
             default:

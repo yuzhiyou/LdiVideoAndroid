@@ -32,7 +32,7 @@ public class ValidateUtil {
      * @return YES/NO
      */
     public static boolean isCheckCode(String checkCode){
-        Pattern pattern = Pattern.compile("\\d{4}$");
+        Pattern pattern = Pattern.compile("\\d{6}$");
         Matcher matcher = pattern.matcher(checkCode);
         if (matcher.matches()) {
             return true;

@@ -8,7 +8,9 @@ import android.util.TypedValue;
 import android.view.View;
 
 import com.zhenaixuanyan.app.videos.Activitys.Base.BaseActivity;
+import com.zhenaixuanyan.app.videos.Activitys.Views.SpaceItemDecoration;
 import com.zhenaixuanyan.app.videos.Adapter.VideoListAdapter;
+import com.zhenaixuanyan.app.videos.App_;
 import com.zhenaixuanyan.app.videos.Beans.Video;
 import com.zhenaixuanyan.app.videos.Beans.WepApi.Request.IndexVideoRequest;
 import com.zhenaixuanyan.app.videos.Beans.WepApi.Response.VideoResponse;
@@ -26,6 +28,7 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.rest.spring.annotations.RestService;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import tcking.github.com.giraffeplayer.GiraffePlayerActivity;
 
@@ -34,12 +37,13 @@ public class VideoListActivity extends BaseActivity {
     @RestService
     MyRestClient restClient;
 
-    @ViewById(android.R.id.list)
+    @ViewById(R.id.videoListRecyclerView)
     RecyclerView mRecyclerView;
-    @ViewById(R.id.swipe_refresh_widget)
+
+    @ViewById(R.id.videoListSwipeRefreshWidget)
     SwipeRefreshLayout mSwipeRefreshWidget;
 
-    private ArrayList<Video> mDatas = new ArrayList<>();
+    private List<Video> mDatas = new ArrayList<>();
     VideoListAdapter videoListAdapter = null;
 
     @Extra("videoType")
@@ -47,43 +51,16 @@ public class VideoListActivity extends BaseActivity {
 
     @AfterViews
     void afterViews() {
-        setTitle(R.id.navigation_bar_back_tv, R.string.all_demo);
-        //mSwipeRefreshWidget.setColorScheme(R.color.color1, R.color.color2,
-        //        R.color.color3, R.color.color4);
-        //mSwipeRefreshWidget.setOnRefreshListener(this);
-
-        // 这句话是为了，第一次进入页面的时候显示加载进度条
-        mSwipeRefreshWidget.setProgressViewOffset(false, 0, (int) TypedValue
-                .applyDimension(TypedValue.COMPLEX_UNIT_DIP, 24, getResources()
-                        .getDisplayMetrics()));
-
-        mRecyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
-
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView,
-                                             int newState) {
-                super.onScrollStateChanged(recyclerView, newState);
-
-            }
-
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                super.onScrolled(recyclerView, dx, dy);
-            }
-
-        });
-        showProcessHUD(null);
+        //标题
+        setTitle(R.id.navigation_bar_back_tv, videoType.equalsIgnoreCase("hot")?R.string.all_recommend:R.string.all_demo);
+        //初始化控件
+        viewSetting();
+        //获取数据
         getVideoData();
-
     }
-
-    private void initDatas() {
-        for (int i = 0; i < 20; i++) {
-            Video v = new Video();
-            mDatas.add(v);
-        }
-    }
-
+    /**
+     * 播放视频
+     * */
     private void goPlay(String url) {
         GiraffePlayerActivity.configPlayer(this).play(url);
     }
@@ -96,36 +73,52 @@ public class VideoListActivity extends BaseActivity {
                 break;
         }
     }
+    /**
+     * view setting
+     * */
+    private void viewSetting(){
+        //自动刷新
+        mSwipeRefreshWidget.setColorSchemeResources(R.color.red_btn_bg_color);
+        mSwipeRefreshWidget.post(new Runnable() {
+            @Override
+            public void run() {
+                mSwipeRefreshWidget.setRefreshing(true);
+            }
+        });
 
-    private void bindDatas() {
-        if (videoListAdapter == null) {
-            mRecyclerView.setHasFixedSize(true);
-            mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-            mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-            videoListAdapter = new VideoListAdapter();
-            videoListAdapter.setList(mDatas);
-            mRecyclerView.setAdapter(videoListAdapter);
-            mSwipeRefreshWidget.setRefreshing(false);
-            videoListAdapter.setOnItemClickLitener(new VideoListAdapter.OnItemClickLitener() {
-                @Override
-                public void onItemClick(View view, int position) {
-                    goPlay(mDatas.get(position).v_url);
-                }
+        //刷新监听
+        mSwipeRefreshWidget.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                getVideoData();
+            }
+        });
 
-                @Override
-                public void onItemLongClick(View view, int position) {
+        videoListAdapter = new VideoListAdapter(this);
+        videoListAdapter.setList(mDatas);
+        videoListAdapter.setOnItemClickListener(new VideoListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                goPlay(mDatas.get(position).getV_url());
+            }
 
-                }
-            });
-        } else {
-            videoListAdapter.notifyDataSetChanged();
-        }
+            @Override
+            public void onItemLongClick(View view, int position) {
+
+            }
+        });
+        mRecyclerView.addItemDecoration(new SpaceItemDecoration((int)TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP,10,getResources().getDisplayMetrics())));
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+        mRecyclerView.setAdapter(videoListAdapter);
+
     }
 
     @Background
     void getVideoData() {
         IndexVideoRequest request = new IndexVideoRequest();
-        request.setUserid("1");
+        request.setUserid(String.valueOf(App_.getInstance().mUser.getU_id()));
         try {
             VideoResponse response;
             if (videoType.equalsIgnoreCase("hot")) {
@@ -133,20 +126,20 @@ public class VideoListActivity extends BaseActivity {
             } else {
                 response = restClient.getSampleVideoList(request);
             }
-            LogUtils.i("********" + response.data.size());
             loadVideoList(response);
         } catch (Exception e) {
-
+            loadVideoList(null);
         }
     }
 
     @UiThread
     void loadVideoList(VideoResponse response) {
-        hideProcessHUD();
-        LogUtils.i(">>>>>>>>>>>>>" + response.status + "-" + response.message + "-" + response.data.size());
-        mDatas.clear();
-        mDatas.addAll(response.data);
-        bindDatas();
+        mSwipeRefreshWidget.setRefreshing(false);
+        if (response != null) {
+            mDatas.clear();
+            mDatas.addAll(response.data);
+            videoListAdapter.notifyDataSetChanged();
+        }
     }
 
 

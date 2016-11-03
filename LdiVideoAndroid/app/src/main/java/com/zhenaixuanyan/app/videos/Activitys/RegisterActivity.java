@@ -14,6 +14,7 @@ import com.zhenaixuanyan.app.videos.Constants;
 import com.zhenaixuanyan.app.videos.EventBus.MessageEvent;
 import com.zhenaixuanyan.app.videos.Net.MyRestClient;
 import com.zhenaixuanyan.app.videos.R;
+import com.zhenaixuanyan.app.videos.Utils.APPUtils;
 import com.zhenaixuanyan.app.videos.Utils.ValidateUtil;
 
 import org.androidannotations.annotations.AfterViews;
@@ -28,9 +29,12 @@ import org.androidannotations.rest.spring.annotations.RestService;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.Random;
+
 @EActivity(R.layout.activity_register)
 public class RegisterActivity extends BaseActivity {
-
+    //验证码
+    private String randomCheckCode = "";
     //网络请求
     @RestService
     MyRestClient restClient;
@@ -91,20 +95,23 @@ public class RegisterActivity extends BaseActivity {
                 mc.start();
                 loginSendCheckCodeBtn.setEnabled(false);
                 //请求验证码
-                sendCheckCodeInBackground(registerMobileET.getText().toString(),registerRecommendCodeET.getText().toString());
+                randomCheckCode = APPUtils.getCheckCode();
+                sendCheckCodeInBackground(registerMobileET.getText().toString(),randomCheckCode);
                 break;
             }
             case R.id.registerNextStepBtn: {    //下一步
-                String mobile = registerMobileET.getText().toString();
-                String check_code = registerCheckCodeET.getText().toString();
-                String invitation_code = registerRecommendCodeET.getText().toString();
+                if (randomCheckCode.equalsIgnoreCase(registerCheckCodeET.getText().toString())) {
+                    String mobile = registerMobileET.getText().toString();
+                    String invitation_code = registerRecommendCodeET.getText().toString();
 
-                RegisterPassActivity_
-                        .intent(this)
-                        .mobile(mobile)
-                        .chekcode(check_code)
-                        .invitation_code(invitation_code)
-                        .start();
+                    RegisterPassActivity_
+                            .intent(this)
+                            .mobile(mobile)
+                            .invitation_code(invitation_code)
+                            .start();
+                }else{
+                    showToast("验证码错误!");
+                }
                 break;
             }
             default:

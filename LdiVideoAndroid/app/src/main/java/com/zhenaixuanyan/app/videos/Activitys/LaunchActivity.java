@@ -56,7 +56,8 @@ public class LaunchActivity extends BaseActivity implements  Animator.AnimatorLi
     @UiThread
     void startEnter(){
         if (App_.getInstance().mUser == null) { //未登录
-            if (App_.getInstance().getFirstEnter(this)) { //都一次进入软件
+            if (true) { //都一次进入软件
+            //if (App_.getInstance().getFirstEnter(this)) { //都一次进入软件
                 UserGuideActivity_.intent(this).start();
                 App_.getInstance().saveFirstEnter(this);
             }else {

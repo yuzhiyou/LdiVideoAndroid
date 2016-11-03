@@ -1,11 +1,13 @@
 package com.zhenaixuanyan.app.videos.Adapter;
 
 import android.content.Context;
+import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
@@ -20,26 +22,20 @@ import java.util.List;
  */
 public class VideoListAdapter extends RecyclerView.Adapter<ViewHolder> {
     private List<Video> list;
+
     private Context mContext;
 
-    private static final int TYPE_ITEM = 0;
-    private static final int TYPE_FOOTER = 1;
-
-    public VideoListAdapter(Context ctx){
-        this.mContext = ctx;
-    }
-
-    public interface OnItemClickLitener
+    public interface OnItemClickListener
     {
         void onItemClick(View view, int position);
-        void onItemLongClick(View view , int position);
+        void onItemLongClick(View view, int position);
     }
 
-    private OnItemClickLitener mOnItemClickLitener;
+    private OnItemClickListener mOnItemClickListener;
 
-    public void setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener)
+    public void setOnItemClickListener(OnItemClickListener mOnItemClickListener)
     {
-        this.mOnItemClickLitener = mOnItemClickLitener;
+        this.mOnItemClickListener = mOnItemClickListener;
     }
 
     public List<Video> getList() {
@@ -50,8 +46,8 @@ public class VideoListAdapter extends RecyclerView.Adapter<ViewHolder> {
         this.list = list;
     }
 
-    public VideoListAdapter() {
-
+    public VideoListAdapter(Context context) {
+        mContext = context;
     }
 
     @Override
@@ -59,34 +55,21 @@ public class VideoListAdapter extends RecyclerView.Adapter<ViewHolder> {
         return list.size();
     }
 
-//    @Override
-//    public int getItemViewType(int position) {
-//        if (position + 1 == getItemCount()) {
-//            return TYPE_FOOTER;
-//        } else {
-//            return TYPE_ITEM;
-//        }
-//    }
-
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
         if (holder instanceof ItemViewHolder) {
-            Video video = list.get(position);
-            Picasso.with(mContext).load(video.v_image).into(((ItemViewHolder) holder).iv_video);
-            ((ItemViewHolder) holder).tv_first_title.setText(video.v_name);
-            ((ItemViewHolder) holder).tv_second_title.setText(video.v_describe);
+            ((ItemViewHolder) holder).set(list.get(position));
         }
         // 如果设置了回调，则设置点击事件
-        if (mOnItemClickLitener != null)
+        if (mOnItemClickListener != null)
         {
             holder.itemView.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View v)
                 {
-                    v.setTag(list.get(position));
                     int pos = holder.getLayoutPosition();
-                    mOnItemClickLitener.onItemClick(v, pos);
+                    mOnItemClickListener.onItemClick(holder.itemView, pos);
                 }
             });
 
@@ -96,7 +79,7 @@ public class VideoListAdapter extends RecyclerView.Adapter<ViewHolder> {
                 public boolean onLongClick(View v)
                 {
                     int pos = holder.getLayoutPosition();
-                    mOnItemClickLitener.onItemLongClick(holder.itemView, pos);
+                    mOnItemClickListener.onItemLongClick(holder.itemView, pos);
                     return false;
                 }
             });
@@ -105,40 +88,32 @@ public class VideoListAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        //if (viewType == TYPE_ITEM) {
-            ItemViewHolder holder = new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.video_list_item,parent,false));
-
-            return holder;
-        //}
-//        else if (viewType == TYPE_FOOTER) {
-//            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.footerview, null);
-//            view.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-//            return new FooterViewHolder(view);
-//        }
-
-        //return null;
-    }
-
-    class FooterViewHolder extends ViewHolder {
-
-        public FooterViewHolder(View view) {
-            super(view);
-        }
-
+        ItemViewHolder holder = new ItemViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.video_list_item,parent,false));
+        return holder;
     }
 
     class ItemViewHolder extends ViewHolder {
-        TextView tv_first_title;
-        TextView tv_second_title;
-        RoundedImageView iv_video;
+        ImageView videoGridItemImageIv;
+        TextView videoGridItemTitleTv;
+        TextView videoGridItemDescTv;
 
         public ItemViewHolder(View view) {
             super(view);
-            tv_first_title = (TextView) view.findViewById(R.id.tv_first_title);
-            tv_second_title = (TextView)view.findViewById(R.id.tv_second_title);
-            iv_video =(RoundedImageView) view.findViewById(R.id.iv_video);
+            videoGridItemImageIv = (ImageView) view.findViewById(R.id.videoGridItemImageIv);
+            videoGridItemTitleTv = (TextView)view.findViewById(R.id.videoGridItemTitleTv);
+            videoGridItemDescTv =(TextView) view.findViewById(R.id.videoGridItemDescTv);
         }
-
+        public void set(Video video){
+            //图片
+            Picasso.with(mContext)
+                    .load(video.getV_image_thum())
+                    .placeholder(R.mipmap.no_video_image)
+                    .into(videoGridItemImageIv);
+            //标题
+            videoGridItemTitleTv.setText(video.getV_name());
+            //描述
+            videoGridItemDescTv.setText(video.getV_describe());
+        }
     }
 
 

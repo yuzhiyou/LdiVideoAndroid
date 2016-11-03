@@ -98,7 +98,7 @@ public class LoginActivity extends BaseActivity {
     /**
      * 点击事件
      * */
-    @Click({R.id.navigation_bar_back_ib,R.id.loginBtn,R.id.loginPasswordVisibleIB,R.id.loginAccountClearIB,R.id.loginForgetPasswordTv,R.id.loginRegisterTv})
+    @Click({R.id.navigation_bar_back_ib,R.id.loginBtn,R.id.loginPasswordVisibleIB,R.id.loginAccountClearIB,R.id.loginForgetPasswordTv,R.id.loginRegisterTv,R.id.loginChangeMobileTv})
     void click(View v){
         switch (v.getId()){
             case R.id.navigation_bar_back_ib: {  //导航条返回
@@ -130,6 +130,9 @@ public class LoginActivity extends BaseActivity {
                 break;
             case R.id.loginRegisterTv:  //立即注册
                 RegisterActivity_.intent(this).start();
+                break;
+            case R.id.loginChangeMobileTv:  //更改手机号
+
                 break;
         }
     }

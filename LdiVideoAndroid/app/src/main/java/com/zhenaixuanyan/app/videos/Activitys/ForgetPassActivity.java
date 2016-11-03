@@ -66,7 +66,7 @@ public class ForgetPassActivity extends BaseActivity {
             case R.id.btn_forget_next:{
                 String mobile = et_mobile.getText().toString();
                 String check_code = et_forgetpass_checkcode.getText().toString();
-                Intent intent = RegisterPassActivity_.intent(this).mobile(mobile).chekcode(check_code).get();
+                Intent intent = RegisterPassActivity_.intent(this).mobile(mobile).get();
                 startActivity(intent);
                 break;
             }

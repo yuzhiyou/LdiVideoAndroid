@@ -2,10 +2,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:paddingBottom="10dp"
+    android:paddingTop="10dp">
 
     <ImageView
-        android:id="@+id/videoGridItemImageIv"
+        android:id="@+id/historyVideoGridItemImageIv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_heightPercent="60%w"
@@ -14,7 +16,8 @@
         android:src="@mipmap/banner_default" >
     </ImageView>
     <TextView
-        android:id="@+id/videoGridItemTitleTv"
+        android:id="@+id/historyVideoGridItemTitleTv"
+        android:layout_marginTop="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/Grey_800"
@@ -22,7 +25,8 @@
         android:text="@string/app_name"
         />
     <TextView
-        android:id="@+id/videoGridItemDescTv"
+        android:id="@+id/historyVideoGridItemDescTv"
+        android:layout_marginTop="2dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/Grey_800"

@@ -17,6 +17,7 @@ import org.androidannotations.rest.spring.annotations.Post;
 import org.androidannotations.rest.spring.annotations.RequiresHeader;
 import org.androidannotations.rest.spring.annotations.Rest;
 import org.androidannotations.rest.spring.api.RestClientHeaders;
+import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.GsonHttpMessageConverter;
@@ -27,7 +28,7 @@ import org.springframework.util.MultiValueMap;
  * Created by Forrest on 16/5/17.
  * @author forrest
  */
-@Rest(rootUrl = Constants.kWebApiUrl, converters = {FormHttpMessageConverter.class,GsonHttpMessageConverter.class,StringHttpMessageConverter.class})
+@Rest(rootUrl = Constants.kWebApiUrl, converters = {GsonHttpMessageConverter.class},requestFactory = OkHttp3ClientHttpRequestFactory.class)
 public interface MyRestClient extends RestClientHeaders {
     /**
      发送验证码
@@ -68,12 +69,29 @@ public interface MyRestClient extends RestClientHeaders {
     @Post("/v1/video/watch/save")
     String saveWatch(@Body MultiValueMap<String, Object> data);
 
+    /**
+     * 获取首页数据
+     * */
     @Post("/v1/video/index")
     IndexVideoResponse getHomeVideoList(@Body LinkedMultiValueMap<String,String> request);
-
+    /**
+     * 获取所有推荐视频
+     * */
     @Post("/v1/video/hot")
     VideoResponse getHotVideoList(@Body IndexVideoRequest data);
-
+    /**
+     * 获取所有示例视频
+     * */
     @Post("/v1/video/sample")
     VideoResponse getSampleVideoList(@Body IndexVideoRequest data);
+    /**
+     * 获取所有我的视频
+     * */
+    @Post("/v1/video/myvideo")
+    VideoResponse getMyVideoList(@Body IndexVideoRequest data);
+    /**
+     * 获取所有历史播放视频
+     * */
+    @Post("/v1/watch/query")
+    VideoResponse getHistoryVideoList(@Body IndexVideoRequest data);
  }

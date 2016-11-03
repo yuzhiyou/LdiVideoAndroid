@@ -1,15 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent" >
 
     <ImageView
-        android:id="@+id/imgView"
+        android:id="@+id/bannerItemImageIv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_vertical|center_horizontal"
         android:scaleType="centerCrop"
         android:src="@mipmap/banner_default" >
     </ImageView>
-
-</LinearLayout>
+    <TextView
+        android:id="@+id/bannerItemDescTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@color/banner_info_background"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:lines="1"
+        />
+</FrameLayout>

@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.FLASHLIGHT"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
 
     <application
         android:name=".App_"
@@ -40,6 +41,7 @@
         <activity android:name=".Activitys.ChangeProfileActivity_"/>
         <activity android:name=".Activitys.VideoListActivity_"/>
         <activity android:name=".Activitys.MyVideoListActivity_"/>
+        <activity android:name=".Activitys.HistoryVideoListActivity_"/>
         <activity
             android:name=".Activitys.VideoPayActivity_"
             android:screenOrientation="portrait"/>

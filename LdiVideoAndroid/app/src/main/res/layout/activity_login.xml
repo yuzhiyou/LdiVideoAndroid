@@ -62,7 +62,20 @@
         android:background="@null"
         android:contentDescription="@string/app_name"
         android:src="@mipmap/password_invisible"/>
-
+    <TextView
+        android:id="@+id/loginForgetPasswordTv"
+        style="@style/text_white_14"
+        android:layout_below="@+id/loginPasswordET"
+        android:layout_alignRight="@+id/loginPasswordET"
+        android:clickable="true"
+        android:layout_marginTop="20dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/login_textview_height"
+        android:background="@drawable/gray_text_bg"
+        android:gravity="center"
+        android:text="@string/forget_password"/>
     <TextView
         android:id="@+id/loginRegisterTv"
         style="@style/text_white_14"
@@ -78,19 +91,19 @@
         android:gravity="center"
         android:text="@string/now_register"/>
     <TextView
-        android:id="@+id/loginForgetPasswordTv"
+        android:id="@+id/loginChangeMobileTv"
         style="@style/text_white_14"
         android:layout_below="@+id/loginBtn"
         android:layout_alignRight="@+id/loginBtn"
         android:clickable="true"
         android:layout_marginTop="10dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         android:layout_width="wrap_content"
         android:layout_height="@dimen/login_textview_height"
         android:background="@drawable/gray_text_bg"
         android:gravity="center"
-        android:text="@string/forget_password"/>
+        android:text="@string/update_mobile_number"/>
 
     <Button
         android:id="@+id/loginBtn"
@@ -101,7 +114,7 @@
         android:text="@string/login"
         android:enabled="false"
         android:background="@drawable/red_btn_bg_selector"
-        android:layout_below="@+id/loginPasswordET"
+        android:layout_below="@+id/loginForgetPasswordTv"
         android:layout_alignLeft="@+id/loginPasswordET"
         android:layout_alignStart="@+id/loginPasswordET"
         android:layout_alignRight="@+id/loginPasswordET"

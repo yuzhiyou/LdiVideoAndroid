@@ -1,5 +1,6 @@
 package com.zhenaixuanyan.app.videos.Utils;
 
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -108,5 +109,11 @@ public class APPUtils {
 	public static int px2dip(Context context, float pxValue) {
 		final float scale = context.getResources().getDisplayMetrics().density;
 		return (int) (pxValue / scale + 0.5f);
+	}
+	/**
+	 * 生成6位验证码
+	 * */
+	public static String getCheckCode(){
+		return String.valueOf(new Random().nextInt(999999) % (999999 - 100000 + 1) + 100000);
 	}
 }
